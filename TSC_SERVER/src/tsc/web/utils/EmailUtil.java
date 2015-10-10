@@ -83,10 +83,10 @@ public class EmailUtil {
 						pwd);
 				transport.sendMessage(mimeMsg,
 						mimeMsg.getRecipients(Message.RecipientType.TO));
-				System.out.println("send a email success！");
+				LogUtils.outputINFO("EmailUtil", "send", "receiver : " + to +" content - "+ title + " ： "+content);
 				transport.close();
 		} catch (Exception e) {
-			FunUtils.outputError("EmailUtil", "send", e);
+			LogUtils.outputError("EmailUtil", "send", e.getMessage());
 		}
 			
 		 

@@ -64,7 +64,7 @@ public class TestController  implements Controller  {
 		response.setContentType("text/html;charset=utf-8");
 		
 		
-		List<SeatBean> result = appDataManager.getAvaSeats(1, 3);
+		List<SeatBean> result = appDataManager.getAvaSeats(1, 1);
 	
 		LogUtils.outputINFO("TestController", "testGetAvaSeats", JSON.toJSONString(result));
 		
@@ -78,7 +78,7 @@ public class TestController  implements Controller  {
 		response.setContentType("text/html;charset=utf-8");
 		
 		
-		int result = appDataManager.addAppointment(5, 1, "101131607", 4);
+		int result = appDataManager.addAppointment(6, 1, "101131607", 4);
 	
 		LogUtils.outputINFO("TestController", "testCeateAppointment", String.valueOf((result > 0)));
 		
@@ -105,10 +105,9 @@ public class TestController  implements Controller  {
 		response.setContentType("text/html;charset=utf-8");
 		
 		
-		int result = appDataManager.deleteAppointment("101131607", 6,1);
+		int result = appDataManager.deleteAppointment("101131608", 12,3);
 	
 		LogUtils.outputINFO("TestController", "testDeleteAppointment", String.valueOf((result > 0)));
-		
 		
 		
 		outHTML(response, result);
@@ -121,7 +120,7 @@ public class TestController  implements Controller  {
 		response.setContentType("text/html;charset=utf-8");
 		
 		
-		int result = appDataManager.updateAppoinmentStatus(2, 12);
+		int result = appDataManager.updateAppoinmentStatus(2, 15);
 	
 		LogUtils.outputINFO("TestController", "testUpdateAppointmentStatus", String.valueOf((result > 0)));
 		
@@ -133,7 +132,6 @@ public class TestController  implements Controller  {
 	public void testViewAppointment(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
-		
 		
 		List<AppointmentBean> result = appDataManager.getAppointments("101131607", 1);
 	
@@ -150,7 +148,7 @@ public class TestController  implements Controller  {
 		
 		
 		int  result =	tscInfoDataManager.updateTSC(new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()), 
-				100, 20, 40, 30, "8:00am - 5:30pm");
+				100, 20, 40, 30, "9:00am - 5:30pm");
 	
 		LogUtils.outputINFO("TestController", "testUpdateTsc", String.valueOf((result > 0)));
 		

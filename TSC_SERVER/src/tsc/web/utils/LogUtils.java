@@ -12,7 +12,7 @@ import tsc.web.framework.ControllerServlet;
 public class LogUtils {
 
 	
-	private static String TEST_CASE = "01";
+	private static String TEST_CASE = "02";
 	private static File error_log;
 	private static File info_log;
 	private static File db_log;
