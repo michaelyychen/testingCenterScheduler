@@ -23,6 +23,7 @@ import tsc.web.dao.impl.TSCInfoDataManager;
 import tsc.web.dao.impl.UserDataManager;
 import tsc.web.framework.Control;
 import tsc.web.framework.Controller;
+import tsc.web.utils.EmailUtil;
 import tsc.web.utils.FunUtils;
 import tsc.web.utils.LogUtils;
 import tsc.web.utils.MessageUtils;
@@ -77,13 +78,26 @@ public class TestController  implements Controller  {
 		response.setContentType("text/html;charset=utf-8");
 		
 		
-		int result = appDataManager.addAppointment(4, 1, "101131607", 4);
+		int result = appDataManager.addAppointment(5, 1, "101131607", 4);
 	
 		LogUtils.outputINFO("TestController", "testCeateAppointment", String.valueOf((result > 0)));
+		
+		
 		
 		outHTML(response, result);
 
 		
+	}
+	
+	public void testSendEmail(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		
+		
+		EmailUtil.getInstance().send("sbu.testing.scheduler.center@gmail.com", "Sy83448095","sunyu90@hotmail.com", "Make Appointment Test", "Test Message");
+		
+		outHTML(response, "test");
+	
 	}
 	
 	public void testDeleteAppointment(HttpServletRequest request, HttpServletResponse response)
@@ -94,6 +108,8 @@ public class TestController  implements Controller  {
 		int result = appDataManager.deleteAppointment("101131607", 6,1);
 	
 		LogUtils.outputINFO("TestController", "testDeleteAppointment", String.valueOf((result > 0)));
+		
+		
 		
 		outHTML(response, result);
 
