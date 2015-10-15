@@ -17,10 +17,10 @@ public class DaoFactory {
 	public static DaoFactory getInstance(){
 		return instance;
 	}
-	                        //UserDao.class
+	                        
 	public <T> T createDao(Class<T> daoType){
 		
-		String daoName = daoType.getSimpleName();  //UserDao
+		String daoName = daoType.getSimpleName(); 
 		String daoClassName = prop.getProperty(daoName);
 		if(daoClassName==null){
 			throw new RuntimeException("not found " + daoName + " dao");

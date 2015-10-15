@@ -1,5 +1,6 @@
 package tsc.web.dao.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,6 +131,27 @@ public class AppointmentDataManager implements AppointmentDao{
 			return result;
 		}finally{
 			LogUtils.outputDB(CLASS_NAME, "getAppointments", DBUtils.convertToText(sql,stuId,role));
+			return result;
+		}
+	}
+
+
+
+	@Override
+	public int getOverlappingTime(Timestamp start, Timestamp end, String student) {
+		String sql = "{call check_time(?,?,?)}";
+		List params = new ArrayList();
+		params.add(start);
+		params.add(end);
+		params.add(student);
+		int result = 0;
+		try {
+			result = (Integer) JdbcUtils.queryByProc(sql,params,new IntHandler());
+		} catch (Exception e) {
+			LogUtils.outputError(CLASS_NAME, "check_time", e.getMessage());
+			return result;
+		}finally{
+			LogUtils.outputDB(CLASS_NAME, "check_time", DBUtils.convertToText(sql, start,end,student));
 			return result;
 		}
 	}
