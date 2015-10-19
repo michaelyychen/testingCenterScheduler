@@ -60,6 +60,12 @@ public class LoginRequestBean extends HttpRequestBean{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public Object getObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

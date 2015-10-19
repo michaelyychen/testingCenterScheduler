@@ -2,7 +2,7 @@ package tsc.web.bean.request;
 
 import javax.servlet.http.HttpServletRequest;
 
-public abstract class HttpRequestBean{
+public abstract class HttpRequestBean<T>{
 
 	protected HttpServletRequest mRequest;
 	public HttpRequestBean(HttpServletRequest request) {
@@ -14,5 +14,5 @@ public abstract class HttpRequestBean{
 	
 	public abstract boolean validDate();
 	public abstract void parseData();
-
+	public abstract T getObject();
 }

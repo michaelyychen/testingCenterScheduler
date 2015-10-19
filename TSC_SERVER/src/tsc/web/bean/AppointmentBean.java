@@ -1,5 +1,7 @@
 package tsc.web.bean;
 
+import java.sql.Timestamp;
+
 public class AppointmentBean {
 
 	private int _id;
@@ -8,6 +10,8 @@ public class AppointmentBean {
 	private String student;
 	private int seatId;
 	private String seatNumber;
+	private Timestamp startTime;
+	private Timestamp endTime;
 	
 	public AppointmentBean() {
 	
@@ -59,6 +63,22 @@ public class AppointmentBean {
 
 	public void setSeatNumber(String seatNumber) {
 		this.seatNumber = seatNumber;
+	}
+
+	public Timestamp getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
+	}
+
+	public Timestamp getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Timestamp endTime) {
+		this.endTime = endTime;
 	}
 	
 	
