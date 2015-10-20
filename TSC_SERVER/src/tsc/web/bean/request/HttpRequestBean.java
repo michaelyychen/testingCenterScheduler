@@ -12,7 +12,7 @@ public abstract class HttpRequestBean<T>{
 	}
 	
 	
-	public abstract boolean validDate();
+	public abstract boolean validData();
 	public abstract void parseData();
 	public abstract T getObject();
 }

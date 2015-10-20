@@ -24,10 +24,10 @@ public class HttpResponseBean {
 
 	public void setResult(int result) {
 		this.result = result;
-		if(feedback!=null){
+			feedback = new FeedBackBean();
 			feedback.setCode(result);
 			feedback.setMessage(FeedBackUtils.feedbackTable.get(getResult()));
-		}
+	
 	}
 
 	public FeedBackBean getFeedback() {

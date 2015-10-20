@@ -22,11 +22,12 @@ public class AppointmentService {
 	public CreateAppointmentResponseBean createAppointment(CreateAppointmentRequestBean httpRequestBean){
 		
 		CreateAppointmentResponseBean mResponseBean = new CreateAppointmentResponseBean();
+		
 		AppointmentBean appointment = httpRequestBean.getObject();
 		
 		if(appointmentDao.getOverlappingTime(appointment.getStartTime(), 
 				appointment.getEndTime(), 
-				appointment.getStudent())>0){
+				appointment.getStudent())==0){
 			
 			
 			int id = appointmentDao.addAppointment(appointment.getExamId(), appointment.getStatus(), appointment.getStudent(), appointment.getSeatId());

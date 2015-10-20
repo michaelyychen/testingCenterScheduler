@@ -19,7 +19,7 @@ public class LoginRequestBean extends HttpRequestBean{
 	}
 
 	@Override
-	public boolean validDate() {
+	public boolean validData() {
 		
 		if(email==null||email.trim().length()==0||password==null||password.trim().length()==0){
 			return false;

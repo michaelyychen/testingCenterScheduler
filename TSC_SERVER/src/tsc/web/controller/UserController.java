@@ -26,7 +26,7 @@ public class UserController implements Controller{
 	
 		LoginRequestBean requestBean = new LoginRequestBean(request);
 		
-		if(requestBean.validDate()){
+		if(requestBean.validData()){
 			UserBean user = userDataManager.findUser(requestBean.getEmail(), requestBean.getUserId(),requestBean.getPassword());
 			if(user==null){
 				errorPage(request,response,"Can't Not Find This User");

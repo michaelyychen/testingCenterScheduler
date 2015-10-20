@@ -28,7 +28,7 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 	}
 
 	@Override
-	public boolean validDate() {
+	public boolean validData() {
 		// TODO Auto-generated method stub
 		if(appointment.getExamId()<=0){
 			return false;
