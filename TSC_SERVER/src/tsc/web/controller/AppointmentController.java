@@ -5,10 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.Icon;
-
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
-
 import tsc.web.bean.AppointmentBean;
 import tsc.web.bean.FeedBackBean;
 import tsc.web.bean.UserBean;
