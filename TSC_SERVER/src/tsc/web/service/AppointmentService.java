@@ -1,6 +1,9 @@
 package tsc.web.service;
 
+import java.util.List;
+
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.UserBean;
 import tsc.web.bean.request.CreateAppointmentRequestBean;
 import tsc.web.bean.request.CreateAppointmentResponseBean;
 import tsc.web.dao.AppointmentDao;
@@ -44,5 +47,11 @@ public class AppointmentService {
 		
 		return mResponseBean;
 		
+	}
+
+
+	public List<AppointmentBean> getAppointments(UserBean user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,10 +1,17 @@
 package tsc.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.Icon;
 
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
+
+import tsc.web.bean.AppointmentBean;
 import tsc.web.bean.FeedBackBean;
+import tsc.web.bean.UserBean;
 import tsc.web.bean.request.CreateAppointmentRequestBean;
 import tsc.web.bean.request.CreateAppointmentResponseBean;
 import tsc.web.bean.request.HttpResponseBean;
@@ -58,6 +65,18 @@ public class AppointmentController implements Controller{
 			// go error page
 		}
 		
+	}
+	
+	public void viewAppointments(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		HttpSession session = request.getSession();
+		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
+		if(sesseionObj instanceof UserBean){
+			
+				UserBean user = (UserBean) sesseionObj;
+				List<AppointmentBean> appointments = mService.getAppointments(user);
+		}
 	}
 	
 

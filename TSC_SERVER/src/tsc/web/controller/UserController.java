@@ -2,6 +2,7 @@ package tsc.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tsc.web.bean.ErrorBean;
 import tsc.web.bean.UserBean;
@@ -14,6 +15,8 @@ import tsc.web.framework.Controller;
 public class UserController implements Controller{
 
 	UserDataManager userDataManager = new UserDataManager();
+	
+	public static final String SESSION_USER = "user";
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -31,8 +34,12 @@ public class UserController implements Controller{
 			if(user==null){
 				errorPage(request,response,"Can't Not Find This User");
 			}else{
+				HttpSession session = request.getSession();
+				session.setAttribute(UserController.SESSION_USER, user);
 				request.setAttribute("user", user);
 				request.getRequestDispatcher("/student.jsp").forward(request, response);
+				
+				
 			}
 		}else{
 			errorPage(request,response,"Invalid Username Or Password");
