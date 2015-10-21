@@ -19,6 +19,8 @@ public class FeedBackUtils {
 	
 	public static final int FB_CODE_APPOINTMENT_UPDATE_STATUS_FAIL = 2002;
 	public static final String FB_TEXT_APPOINTMENT_UPDATE_STATUS_FAIL = "FB_TEXT_APPOINTMENT_UPDATE_STATUS_FAIL";
+	public static final int FB_CODE_GLOBAL_EXCEPTION = -1000;
+	public static final String FB_TEXT_GLOBAL_EXCEPTION = "Error";
 	
 	
 	

@@ -15,6 +15,8 @@ import tsc.web.bean.request.ChangeAppointmentStatusResponseBean;
 import tsc.web.bean.request.CreateAppointmentRequestBean;
 import tsc.web.bean.request.CreateAppointmentResponseBean;
 import tsc.web.bean.request.HttpResponseBean;
+import tsc.web.bean.request.ViewAppointmentRequestBean;
+import tsc.web.bean.request.ViewAppointmentResponseBean;
 import tsc.web.framework.Control;
 import tsc.web.framework.Controller;
 import tsc.web.service.AppointmentService;
@@ -76,9 +78,18 @@ public class AppointmentController implements Controller{
 		HttpSession session = request.getSession();
 		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
 		if(sesseionObj instanceof UserBean){
-			
+				ViewAppointmentRequestBean requestBean = new ViewAppointmentRequestBean(request);
 				UserBean user = (UserBean) sesseionObj;
-				List<AppointmentBean> appointments = mService.getAppointments(user);
+				if(requestBean.validData()){
+				ViewAppointmentResponseBean responseBean = mService.getAppointments(user, requestBean);
+				if(responseBean.isSuccess()){
+					webPageResponse();
+				}
+				else{
+					FeedBackBean feedBack = responseBean.getFeedback();
+					errorPage(request, response, feedBack.getMessage());
+				}
+				}
 		}
 		
 		

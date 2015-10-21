@@ -9,6 +9,8 @@ import tsc.web.bean.request.ChangeAppointmentStatusRequestBean;
 import tsc.web.bean.request.ChangeAppointmentStatusResponseBean;
 import tsc.web.bean.request.CreateAppointmentRequestBean;
 import tsc.web.bean.request.CreateAppointmentResponseBean;
+import tsc.web.bean.request.ViewAppointmentRequestBean;
+import tsc.web.bean.request.ViewAppointmentResponseBean;
 import tsc.web.dao.AppointmentDao;
 import tsc.web.dao.impl.AppointmentDataManager;
 import tsc.web.utils.DaoFactory;
@@ -53,10 +55,23 @@ public class AppointmentService {
 	}
 
 
-	public List<AppointmentBean> getAppointments(UserBean user) {
-		
-		return null;
-	}
+
+		public ViewAppointmentResponseBean getAppointments(UserBean user, ViewAppointmentRequestBean requestBean) {
+			// TODO Auto-generated method stub
+			ViewAppointmentResponseBean responseBean = new ViewAppointmentResponseBean();
+			try {
+				int role = user.getRole();
+				String ID = user.getUserId();
+				int offset = requestBean.getObject();
+				List<AppointmentBean> appointments = appointmentDao.getAppointments(ID, role, offset);
+				responseBean.setAppointments(appointments);
+			} catch (Exception e) {
+				responseBean.setResult(FeedBackUtils.FB_CODE_GLOBAL_EXCEPTION);
+			}finally{
+				
+			}
+			return responseBean;
+		}
 
 
 	public ChangeAppointmentStatusResponseBean changeAppointmentStatus(
