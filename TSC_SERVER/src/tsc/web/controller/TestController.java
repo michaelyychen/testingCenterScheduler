@@ -186,6 +186,28 @@ public class TestController  implements Controller  {
 			out.close();
 		}
 	}
+
+
+
+
+
+
+	@Override
+	public void webPageResponse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void jsonDataResponse() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

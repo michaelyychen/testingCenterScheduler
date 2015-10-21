@@ -37,6 +37,8 @@ public class UserController implements Controller{
 				HttpSession session = request.getSession();
 				session.setAttribute(UserController.SESSION_USER, user);
 				request.setAttribute("user", user);
+				
+				webPageResponse();
 				request.getRequestDispatcher("/student.jsp").forward(request, response);
 				
 				
@@ -55,6 +57,18 @@ public class UserController implements Controller{
 			HttpServletResponse response, String message) throws Exception {
 		request.setAttribute("error", new ErrorBean(message));
 		request.getRequestDispatcher("/error.jsp").forward(request, response);
+	}
+
+	@Override
+	public void webPageResponse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void jsonDataResponse() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

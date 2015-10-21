@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.ErrorBean;
 import tsc.web.bean.FeedBackBean;
 import tsc.web.bean.UserBean;
+import tsc.web.bean.request.ChangeAppointmentStatusRequestBean;
+import tsc.web.bean.request.ChangeAppointmentStatusResponseBean;
 import tsc.web.bean.request.CreateAppointmentRequestBean;
 import tsc.web.bean.request.CreateAppointmentResponseBean;
 import tsc.web.bean.request.HttpResponseBean;
@@ -34,7 +37,8 @@ public class AppointmentController implements Controller{
 	public void errorPage(HttpServletRequest request,
 			HttpServletResponse response, String message) throws Exception {
 		
-		
+		request.setAttribute("error", new ErrorBean(message));
+		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	}
 	
 	
@@ -55,6 +59,7 @@ public class AppointmentController implements Controller{
 			}else{
 				
 				FeedBackBean feedBack = responseBean.getFeedback();
+				errorPage(request, response,feedBack.getMessage());
 				// Go to error page
 			}
 			
@@ -88,7 +93,31 @@ public class AppointmentController implements Controller{
 			UserBean user = FunUtils.getUser(request);
 			if(user!=null){
 				
+				ChangeAppointmentStatusRequestBean requestBean = new ChangeAppointmentStatusRequestBean(request);
+				ChangeAppointmentStatusResponseBean responseBean = mService.changeAppointmentStatus(requestBean,user);
+				if(responseBean.isSuccess()){
+					jsonDataResponse();
+					//
+				}else{
+					FeedBackBean feedBack = responseBean.getFeedback();
+					errorPage(request, response,feedBack.getMessage());
+				}
+			}else{
+				errorPage(request, response, "Please Login.");
+				
 			}
+	}
+
+	@Override
+	public void webPageResponse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void jsonDataResponse() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

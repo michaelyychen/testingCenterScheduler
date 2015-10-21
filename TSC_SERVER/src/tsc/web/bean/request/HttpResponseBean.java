@@ -23,7 +23,7 @@ public class HttpResponseBean {
 	}
 
 	public void setResult(int result) {
-		this.result = result;
+			this.result = result;
 			feedback = new FeedBackBean();
 			feedback.setCode(result);
 			feedback.setMessage(FeedBackUtils.feedbackTable.get(getResult()));
@@ -38,5 +38,10 @@ public class HttpResponseBean {
 		this.feedback = feedback;
 	}
 	
+	
+	public boolean isSuccess(){
+		
+		return result == SERVICE_SUCCESS;
+	}
 	
 }

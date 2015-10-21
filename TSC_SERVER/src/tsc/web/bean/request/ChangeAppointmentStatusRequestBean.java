@@ -2,16 +2,14 @@ package tsc.web.bean.request;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.sun.xml.internal.rngom.digested.DDefine;
 
-
-
-
-public class ChangeAppointmentStatusRequestBean extends HttpRequestBean<Integer>{
+public class ChangeAppointmentStatusRequestBean extends HttpRequestBean<Integer[]>{
 
 	public static final String  PARA_APPOINTMENT_STATUS = "status";
+	public static final String  PARA_APPOINTMENT_ID = "appointmentId";
 
 	int status = 0;
+	int appointmentId = 0;
 	
 	public ChangeAppointmentStatusRequestBean(HttpServletRequest request) {
 		super(request);
@@ -31,12 +29,13 @@ public class ChangeAppointmentStatusRequestBean extends HttpRequestBean<Integer>
 	public void parseData() {
 		// TODO Auto-generated method stub
 		status = Integer.valueOf(mRequest.getParameter(PARA_APPOINTMENT_STATUS));
+		appointmentId = Integer.valueOf(mRequest.getParameter(PARA_APPOINTMENT_ID));
 	}
 
 	@Override
-	public Integer getObject() {
+	public Integer[] getObject() {
 		// TODO Auto-generated method stub
-		return status;
+		return (new Integer[]{status,appointmentId});
 	}
 
 	
