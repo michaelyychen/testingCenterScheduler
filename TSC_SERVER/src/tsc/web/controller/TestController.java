@@ -133,7 +133,7 @@ public class TestController  implements Controller  {
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		
-		List<AppointmentBean> result = appDataManager.getAppointments("101131607", 1);
+		List<AppointmentBean> result = appDataManager.getAppointments("101131607", 1,2);
 	
 		LogUtils.outputINFO("TestController", "testViewAppointmentStatus",JSON.toJSONString(result));
 		

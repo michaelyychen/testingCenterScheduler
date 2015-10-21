@@ -13,11 +13,18 @@ import java.net.URL;
 import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.crypto.Cipher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+
+import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.UserBean;
+import tsc.web.controller.UserController;
 
 import com.alibaba.fastjson.util.TypeUtils;
 
@@ -52,6 +59,18 @@ public class FunUtils {
 		outputError("TEST", "TEST1", new Exception("output error"));
 		outputInfo("TEST", "TEST2", "out put info");
 	
+	}
+	
+	public static UserBean getUser(HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
+		if(sesseionObj!=null&&sesseionObj instanceof UserBean){
+			
+				UserBean user = (UserBean) sesseionObj;
+				return user;
+		}
+		return null;
 	}
 
 }

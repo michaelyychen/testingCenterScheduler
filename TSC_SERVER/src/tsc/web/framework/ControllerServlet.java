@@ -43,6 +43,8 @@ public class ControllerServlet extends HttpServlet {
 
 	public static Date current;
 	public static int alertCount = 0;
+	
+	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub

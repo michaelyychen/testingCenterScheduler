@@ -13,6 +13,8 @@ public class AppointmentBean {
 	private Timestamp startTime;
 	private Timestamp endTime;
 	
+	
+	
 	public AppointmentBean() {
 	
 	}

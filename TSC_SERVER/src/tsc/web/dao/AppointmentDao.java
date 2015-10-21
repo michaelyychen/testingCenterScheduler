@@ -12,7 +12,7 @@ public interface AppointmentDao {
 	int addAppointment( int examId, int status,String stuId,int seatId);
 	int deleteAppointment(String stuId,int appointmentId,int role);
 	int updateAppointmentStatus(int status,int appointmentId);
-	List<AppointmentBean> getAppointments(String stuId,int role);
+	List<AppointmentBean> getAppointments(String stuId,int role,int offset);
 	
 	List<SeatBean> getAvaSeats(int examId,int role);
 	

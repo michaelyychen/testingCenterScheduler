@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import tsc.web.bean.AppointmentBean;
 import tsc.web.bean.FeedBackBean;
 import tsc.web.bean.UserBean;
@@ -14,6 +15,7 @@ import tsc.web.bean.request.HttpResponseBean;
 import tsc.web.framework.Control;
 import tsc.web.framework.Controller;
 import tsc.web.service.AppointmentService;
+import tsc.web.utils.FunUtils;
 
 @Control("/control/appointment")
 public class AppointmentController implements Controller{
@@ -73,6 +75,20 @@ public class AppointmentController implements Controller{
 				UserBean user = (UserBean) sesseionObj;
 				List<AppointmentBean> appointments = mService.getAppointments(user);
 		}
+		
+		
+	}
+	
+	
+	
+	
+	public void updateAppointment(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+			UserBean user = FunUtils.getUser(request);
+			if(user!=null){
+				
+			}
 	}
 	
 

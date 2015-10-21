@@ -51,7 +51,10 @@ public class AppointmentService {
 
 
 	public List<AppointmentBean> getAppointments(UserBean user) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
+
+
+
 }

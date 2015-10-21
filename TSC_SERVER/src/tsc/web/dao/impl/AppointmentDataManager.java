@@ -118,11 +118,12 @@ public class AppointmentDataManager implements AppointmentDao{
 	}
 
 	@Override
-	public List<AppointmentBean> getAppointments(String stuId,int role) {
-		String sql = "{call get_appointments(?,?)}";
+	public List<AppointmentBean> getAppointments(String stuId,int role,int offset) {
+		String sql = "{call get_appointments(?,?,?)}";
 		List params = new ArrayList();
 		params.add(stuId);
 		params.add(role);
+		params.add(offset);
 		List<AppointmentBean> result = null;
 		try {
 			result = (List<AppointmentBean>) JdbcUtils.queryByProc(sql,params,new BeanListHandler(AppointmentBean.class));
