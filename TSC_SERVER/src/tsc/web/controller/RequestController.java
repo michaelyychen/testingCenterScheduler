@@ -52,9 +52,9 @@ public class RequestController implements Controller {
 		if(requestBean.validData()){
 			CreateReqResponseBean responseBean = service.addRequest(requestBean);
 			
-			int result = responseBean.getResult();
 			
-			if(result== HttpResponseBean.SERVICE_SUCCESS){
+			
+			if(responseBean.isSuccess()){
 				
 				// Go to ....
 				
