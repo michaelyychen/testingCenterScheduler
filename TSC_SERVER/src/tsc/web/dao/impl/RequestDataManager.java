@@ -21,8 +21,6 @@ public class RequestDataManager implements RequestDao{
 		params.add(userId);
 		params.add(examId);
 		params.add(status);
-
-
 		int result = 0;
 		
 		try {
@@ -39,7 +37,7 @@ public class RequestDataManager implements RequestDao{
 	}
 
 	@Override
-	public int addExam(int courseId, int identifier, int examType,
+	public int addExam(int courseId, String identifier, int examType,
 			Timestamp start, Timestamp end, int duration, int pterm) {
 		String sql = "{call exam(?,?,?,?,?,?,?)}";
 		List params = new ArrayList();

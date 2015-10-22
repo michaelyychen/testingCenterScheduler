@@ -17,7 +17,7 @@ public class CreateRequestBean extends HttpRequestBean<RequestBean> {
 	@Override
 	public void parseData() {
 		// TODO Auto-generated method stub
-		requestBean.getExam().setExamIdentifier(mRequest.getParameter(EXAM_IDENTIFIER));
+		requestBean.getExam().setIdentifier(mRequest.getParameter(EXAM_IDENTIFIER));
 		
 	}
 	@Override
