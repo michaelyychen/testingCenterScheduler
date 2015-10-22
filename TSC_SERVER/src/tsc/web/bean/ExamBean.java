@@ -9,9 +9,7 @@ public class ExamBean {
 	private int courseId;
 	private String courseName;
 	private int duration;
-	private Timestamp  beginDate;
 	private Timestamp  beginTime;
-	private Timestamp endDate;
 	private Timestamp endTime;
 	private int term; 
 	private int examType;
@@ -46,24 +44,14 @@ public class ExamBean {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public Timestamp getBeginDate() {
-		return beginDate;
-	}
-	public void setBeginDate(Timestamp beginDate) {
-		this.beginDate = beginDate;
-	}
+	
 	public Timestamp getBeginTime() {
 		return beginTime;
 	}
 	public void setBeginTime(Timestamp beginTime) {
 		this.beginTime = beginTime;
 	}
-	public Timestamp getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(Timestamp endDate) {
-		this.endDate = endDate;
-	}
+
 	public Timestamp getEndTime() {
 		return endTime;
 	}

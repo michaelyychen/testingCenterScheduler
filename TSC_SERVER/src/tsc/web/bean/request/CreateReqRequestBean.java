@@ -11,7 +11,7 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 	public static final String EXAM_IDENTIFIER = "examIdentifier";
 	public static final String COURSE_NAME = "courseName";
 	public static final String COURSE_ID = "courseId";
-	public static final String EXAM_BEGIN_DATA = "examBeginDate";
+	
 	
 	private RequestBean requestBean;
 	
@@ -26,9 +26,7 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 		requestBean.getExam().setidentifier(mRequest.getParameter(EXAM_IDENTIFIER));
 		requestBean.getExam().setCourseName(mRequest.getParameter(COURSE_NAME));
 		requestBean.getExam().setCourseId(TypeUtils.castToInt(mRequest.getParameter(COURSE_ID)));
-		requestBean.getExam().setBeginDate(TypeUtils.castToTimestamp(mRequest.getParameter(EXAM_BEGIN_DATA)));
 		requestBean.getExam().setBeginTime(beginTime);
-		requestBean.getExam().setEndDate(endDate);
 		requestBean.getExam().setEndTime(endTime);
 		requestBean.getExam().setDuration(duration);
 		requestBean.getExam().setExamType(examType);
