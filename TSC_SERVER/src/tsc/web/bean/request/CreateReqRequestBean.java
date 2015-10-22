@@ -23,10 +23,10 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 	@Override
 	public void parseData() {
 		// TODO Auto-generated method stub
-		requestBean.getExam().setidentifier(mRequest.getParameter(EXAM_IDENTIFIER));
+		requestBean.getExam().setIdentifier(mRequest.getParameter(EXAM_IDENTIFIER));
 		requestBean.getExam().setCourseName(mRequest.getParameter(COURSE_NAME));
 		requestBean.getExam().setCourseId(TypeUtils.castToInt(mRequest.getParameter(COURSE_ID)));
-		requestBean.getExam().setBeginTime(beginTime);
+		requestBean.getExam().setBeginTime(mRequest.getParameter(EXAM_BEGIN_TIME));
 		requestBean.getExam().setEndTime(endTime);
 		requestBean.getExam().setDuration(duration);
 		requestBean.getExam().setExamType(examType);

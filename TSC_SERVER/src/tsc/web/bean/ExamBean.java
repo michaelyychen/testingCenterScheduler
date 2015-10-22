@@ -20,10 +20,10 @@ public class ExamBean {
 	public void set_id(int _id) {
 		this._id = _id;
 	}
-	public String getidentifier() {
+	public String getIdentifier() {
 		return identifier;
 	}
-	public void setidentifier(String examIdentifier) {
+	public void setIdentifier(String examIdentifier) {
 		this.identifier = examIdentifier;
 	}
 	public int getCourseId() {
