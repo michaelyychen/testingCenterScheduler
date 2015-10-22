@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class ExamBean {
 	
 	private int _id;
-	private String examIdentifier;
+	private String identifier;
 	private int courseId;
 	private String courseName;
 	private int duration;
@@ -22,11 +22,11 @@ public class ExamBean {
 	public void set_id(int _id) {
 		this._id = _id;
 	}
-	public String getExamIdentifier() {
-		return examIdentifier;
+	public String getidentifier() {
+		return identifier;
 	}
-	public void setExamIdentifier(String examIdentifier) {
-		this.examIdentifier = examIdentifier;
+	public void setidentifier(String examIdentifier) {
+		this.identifier = examIdentifier;
 	}
 	public int getCourseId() {
 		return courseId;
