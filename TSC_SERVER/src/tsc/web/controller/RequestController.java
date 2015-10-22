@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tsc.web.bean.ErrorBean;
-import tsc.web.bean.request.CreateRequestBean;
+import tsc.web.bean.request.CreateReqRequestBean;
 import tsc.web.framework.Controller;
 
 public class RequestController implements Controller {
@@ -38,7 +38,7 @@ public class RequestController implements Controller {
 	
 	public void makeRequest(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		CreateRequestBean requestBean = new 
+		CreateReqRequestBean requestBean = new 
 		
 	}
 
