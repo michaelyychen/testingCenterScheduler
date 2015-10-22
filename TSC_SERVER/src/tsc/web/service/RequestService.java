@@ -27,7 +27,7 @@ public class RequestService {
 		ExamBean exam = examRequest.getExam();
 		if(exam!=null){
 		//	int examId = requestDao.addExam(exam.getCourseId(), exam.getExamIdentifier(),exam.getExamType(), exam.getBeginDate(), exam.getEndDate(), exam.getDuration(), exam.getTerm());
-			int examId = requestDao.addExam(exam.getCourseId(), exam.getIdentifier(), exam.getExamType(), exam.getBeginTime(), exam.getEndTime(), exam.getDuration(), exam.getTerm());
+			int examId = requestDao.addExam(exam.getCourseId(), exam.getIdentifier(), exam.getExamType(), exam.getBeginTime(), exam.getEndTime(), exam.getDuration(), examRequest.getCourse().getTermId());
 			if(examId>0){
 				int requestId = requestDao.addRequest(examRequest.getUserId(), examId, examRequest.getStatus());
 			}else{
