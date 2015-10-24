@@ -38,9 +38,10 @@ public class UserController implements Controller{
 				session.setAttribute(UserController.SESSION_USER, user);
 				request.setAttribute("user", user);
 				
-				webPageResponse();
-				request.getRequestDispatcher("/student.jsp").forward(request, response);
-				
+				//webPageResponse(1);
+				if(user.getRole()==2){
+					request.getRequestDispatcher("/instructor.jsp").forward(request, response);
+				}
 				
 			}
 		}else{

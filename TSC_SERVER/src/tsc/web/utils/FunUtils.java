@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -18,6 +19,7 @@ import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -71,6 +73,24 @@ public class FunUtils {
 				return user;
 		}
 		return null;
+	}
+	
+	public static boolean isLogin(HttpServletRequest request){
+		if(getUser(request)==null){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public static void goToLoginPage(HttpServletResponse response){
+		
+			try {
+				response.sendRedirect("/index.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 }

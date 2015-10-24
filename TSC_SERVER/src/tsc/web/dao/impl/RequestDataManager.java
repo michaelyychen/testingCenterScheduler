@@ -4,7 +4,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.RequestBean;
 import tsc.web.dao.RequestDao;
+import tsc.web.utils.BeanListHandler;
 import tsc.web.utils.DBUtils;
 import tsc.web.utils.IntHandler;
 import tsc.web.utils.JdbcUtils;
@@ -60,6 +63,45 @@ public class RequestDataManager implements RequestDao{
 			
 		}
 		
+		return result;
+	}
+
+	@Override
+	public List<RequestBean> getRequests(int role, int userid) {
+	
+		String sql = "{call view_requests(?,?)}";
+		List params = new ArrayList();
+		params.add(role);
+		params.add(userid);
+		
+		List<RequestBean> result = null;
+		try {
+			result = (List<RequestBean>) JdbcUtils.queryByProc(sql,params,new BeanListHandler(RequestBean.class));
+		} catch (Exception e) {
+			LogUtils.outputError(CLASS_NAME, "getRequests", e.getMessage());
+			return result;
+		}finally{
+			LogUtils.outputDB(CLASS_NAME, "getRequests", DBUtils.convertToText(sql,role,userid));
+		}
+		return result;
+	}
+
+	@Override
+	public int updateRequestStatus(int requestId, int status) {
+		String sql = "{call update_request_status(?,?)}";
+		List params = new ArrayList();
+		params.add(requestId);
+		params.add(status);
+		int result = 0;
+		try {
+			result = (Integer) JdbcUtils.queryByProc(sql,params,new IntHandler());
+		} catch (Exception e) {
+			LogUtils.outputError(CLASS_NAME, "updateRequestStatus", e.getMessage());
+			return result;
+		}finally{
+			LogUtils.outputDB(CLASS_NAME, "updateRequestStatus", DBUtils.convertToText(sql,requestId,status));
+			
+		}
 		return result;
 	}
 	
