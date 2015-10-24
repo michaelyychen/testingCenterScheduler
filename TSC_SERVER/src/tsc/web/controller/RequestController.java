@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import tsc.web.bean.ErrorBean;
 import tsc.web.bean.FeedBackBean;
 import tsc.web.bean.UserBean;
+import tsc.web.bean.request.ChangeAppointmentStatusRequestBean;
+import tsc.web.bean.request.ChangeReqStatusRequestBean;
+import tsc.web.bean.request.ChangeReqStatusResponseBean;
 import tsc.web.bean.request.CreateReqRequestBean;
 import tsc.web.bean.request.CreateReqResponseBean;
 import tsc.web.bean.request.HttpResponseBean;
@@ -111,6 +114,26 @@ public class RequestController implements Controller {
 	}
 	
 	public void updateRequest(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
 		
+		UserBean user = FunUtils.getUser(request);
+		if(user != null){
+			ChangeReqStatusRequestBean requestBean = new ChangeReqStatusRequestBean(request);
+			ChangeReqStatusResponseBean responseBean = service.changeRequestStatus(requestBean, user);
+			if(responseBean.isSuccess()){
+				jsonDataResponse();
+				//
+			}else{
+				FeedBackBean feedBack = responseBean.getFeedback();
+				errorPage(request, response,feedBack.getMessage());
+			}
+		}else{
+			errorPage(request, response, "Please Login.");
+			
+		}
 	}
+	
 }

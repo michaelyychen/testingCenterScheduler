@@ -4,6 +4,9 @@ import java.util.List;
 
 import tsc.web.bean.ExamBean;
 import tsc.web.bean.RequestBean;
+import tsc.web.bean.UserBean;
+import tsc.web.bean.request.ChangeReqStatusRequestBean;
+import tsc.web.bean.request.ChangeReqStatusResponseBean;
 import tsc.web.bean.request.CreateReqRequestBean;
 import tsc.web.bean.request.CreateReqResponseBean;
 import tsc.web.bean.request.ViewReqRequestBean;
@@ -60,6 +63,22 @@ public class RequestService {
 			
 		}
 		
+		return responseBean;
+	}
+
+
+	public ChangeReqStatusResponseBean changeRequestStatus(ChangeReqStatusRequestBean requestBean, UserBean user) {
+		// TODO Auto-generated method stub
+		ChangeReqStatusResponseBean responseBean = new ChangeReqStatusResponseBean();
+		if (RequestUtils.checkUpdateRequestStatusPermission(user.getRole(), requestBean.getStatus())) {
+			int result = requestDao.updateRequestStatus(requestBean.get_id(), requestBean.getStatus());
+			if (result <= 0) {
+				responseBean.setResult(FeedBackUtils.FB_CODE_REQUEST_UPDATE_STATUS_FAIL);
+			}
+		}
+		else {
+			responseBean.setResult(FeedBackUtils.FB_CODE_REQUEST_NO_PERMISSION);
+		}
 		return responseBean;
 	}
 	

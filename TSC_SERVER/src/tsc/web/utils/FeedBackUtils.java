@@ -26,6 +26,14 @@ public class FeedBackUtils {
 	public static final int FB_CODE_REQUEST_ADD_FAIL = 3000;
 	public static final String FB_TEXT_REQUEST_ADD_FAIL = "FB_TEXT_REQUEST_ADD_FAIL";
 	
+	public static final int FB_CODE_REQUEST_NO_PERMISSION = 3001;
+	public static final String FB_TEXT_REQUEST_NO_PERMISSION = "FB_TEXT_REQUEST_NO_PERMISSION";
+	
+	public static final int FB_CODE_REQUEST_UPDATE_STATUS_FAIL = 3002;
+	public static final String FB_TEXT_REQUEST_UPDATE_STATUS_FAIL = "FB_TEXT_REQUEST_UPDATE_STATUS_FAIL";
+	
+	
+	
 	
 	
 	

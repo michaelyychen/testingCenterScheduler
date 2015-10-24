@@ -82,8 +82,6 @@ public class AppointmentService {
 			
 			int result = appointmentDao.updateAppoinmentStatus(requestBean.getObject()[0], requestBean.getObject()[1]);
 			if(result<=0){
-				responseBean.setResult(FeedBackUtils.FB_CODE_APPOINTMENT_NO_PERMISSION);
-			}else{
 				responseBean.setResult(FeedBackUtils.FB_CODE_APPOINTMENT_UPDATE_STATUS_FAIL);
 			}
 		}else{
