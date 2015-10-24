@@ -37,6 +37,9 @@ public class AppointmentService {
 				appointment.getEndTime(), 
 				appointment.getStudent())==0){
 			
+			 if(httpRequestBean.getUserRole()==1||appointment.getSeatId()==0){
+				 appointment.setSeatId(appointmentDao.getAvaSeats(appointment.getExamId(), 1).get(0).get_id());
+			 }
 			
 			int id = appointmentDao.addAppointment(appointment.getExamId(), appointment.getStatus(), appointment.getStudent(), appointment.getSeatId());
 			if(id>0){
