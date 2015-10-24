@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 import tsc.web.bean.AppointmentBean;
 import tsc.web.bean.UserBean;
 import tsc.web.controller.UserController;
+import tsc.web.framework.ControllerServlet;
 
 import com.alibaba.fastjson.util.TypeUtils;
 
@@ -86,7 +87,7 @@ public class FunUtils {
 	public static void goToLoginPage(HttpServletResponse response){
 		
 			try {
-				response.sendRedirect("/index.jsp");
+				response.sendRedirect("/TSC_SERVER/index.jsp");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

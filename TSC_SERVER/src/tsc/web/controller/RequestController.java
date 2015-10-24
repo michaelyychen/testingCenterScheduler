@@ -14,6 +14,7 @@ import tsc.web.bean.request.ViewReqRequestBean;
 import tsc.web.bean.request.ViewReqResponseBean;
 import tsc.web.framework.Controller;
 import tsc.web.service.RequestService;
+import tsc.web.utils.FunUtils;
 
 public class RequestController implements Controller {
 
@@ -52,6 +53,11 @@ public class RequestController implements Controller {
 
 	public void makeRequest(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
+		
 		CreateReqRequestBean requestBean = new CreateReqRequestBean(request);
 		if(requestBean.validData()){
 			CreateReqResponseBean responseBean = service.addRequest(requestBean);
@@ -85,6 +91,11 @@ public class RequestController implements Controller {
 //				
 //			}
 //		}
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
+		
 		ViewReqRequestBean resquestBean = new ViewReqRequestBean(request);
 		if(resquestBean.validData()){
 			ViewReqResponseBean responseBean = service.getRequestList(resquestBean);
