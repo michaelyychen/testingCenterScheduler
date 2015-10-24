@@ -1,5 +1,7 @@
 package tsc.web.service;
 
+import java.util.List;
+
 import tsc.web.bean.ExamBean;
 import tsc.web.bean.RequestBean;
 import tsc.web.bean.request.CreateReqRequestBean;
@@ -46,7 +48,19 @@ public class RequestService {
 
 	public ViewReqResponseBean getRequestList(ViewReqRequestBean resquestBean) {
 		// TODO Auto-generated method stub
-		return null;
+		ViewReqResponseBean responseBean = new ViewReqResponseBean();
+		try {
+			int role = resquestBean.getRole();
+			int userId = resquestBean.get_id();
+			List<RequestBean> requests =  requestDao.getRequests(role, userId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			responseBean.setResult(FeedBackUtils.FB_CODE_GLOBAL_EXCEPTION);
+		}finally{
+			
+		}
+		
+		return responseBean;
 	}
 	
 }

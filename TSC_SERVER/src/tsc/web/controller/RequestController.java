@@ -98,4 +98,8 @@ public class RequestController implements Controller {
 		}
 		
 	}
+	
+	public void updateRequest(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+	}
 }
