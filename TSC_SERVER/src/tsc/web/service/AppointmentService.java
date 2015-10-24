@@ -4,6 +4,7 @@ import java.util.List;
 
 import tsc.web.bean.AppointmentBean;
 import tsc.web.bean.FeedBackBean;
+import tsc.web.bean.SeatBean;
 import tsc.web.bean.UserBean;
 import tsc.web.bean.request.ChangeAppointmentStatusRequestBean;
 import tsc.web.bean.request.ChangeAppointmentStatusResponseBean;
@@ -93,6 +94,12 @@ public class AppointmentService {
 			responseBean.setResult(FeedBackUtils.FB_CODE_APPOINTMENT_NO_PERMISSION);
 		}
 		return responseBean;
+	}
+	
+	public List<SeatBean> getAvaSeats(int examId,int role){
+		
+		return appointmentDao.getAvaSeats(examId, role);
+		
 	}
 
 
