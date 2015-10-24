@@ -1,12 +1,15 @@
 package tsc.web.bean.request;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.util.TypeUtils;
 
 import tsc.web.bean.CourseBean;
 import tsc.web.bean.RequestBean;
+import tsc.web.bean.UserBean;
+import tsc.web.controller.UserController;
 
 public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 
@@ -39,7 +42,13 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 		requestBean.getExam().setEndTime(TypeUtils.castToTimestamp(mRequest.getParameter(PARA_EXAM_END_TIME)));
 		requestBean.getExam().setDuration(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_DURATION)));
 		requestBean.getExam().setExamType(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_TYPE)));
-		requestBean.setUserId(TypeUtils.castToInt(mRequest.getParameter(PARA_USER_ID)));
+		//requestBean.setUserId(TypeUtils.castToInt(mRequest.getParameter(PARA_USER_ID)));
+		HttpSession session = mRequest.getSession();
+		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
+		if(sesseionObj instanceof UserBean){
+			UserBean user = (UserBean) sesseionObj;
+			requestBean.setUserId(TypeUtils.castToInt(user.get_id()));
+		}
 		requestBean.setStatus(TypeUtils.castToInt(mRequest.getParameter(PARA_REQUEST_STATUS)));
 		requestBean.getExam().setExamNumber(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_NUMBER)));
 		String courseJson = mRequest.getParameter(PARA_COURSE);

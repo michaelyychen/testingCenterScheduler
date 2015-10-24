@@ -49,6 +49,7 @@ public class RequestController implements Controller {
 	public void makeRequest(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		CreateReqRequestBean requestBean = new CreateReqRequestBean(request);
+		//request.getSession().getAttribute(arg0)
 		if(requestBean.validData()){
 			CreateReqResponseBean responseBean = service.addRequest(requestBean);
 			
@@ -69,5 +70,10 @@ public class RequestController implements Controller {
 			
 			// go error page
 			}
+	}
+	
+	public void viewRequests(HttpServletRequest request, HttpServletResponse response){
+		
+		
 	}
 }
