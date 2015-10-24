@@ -1,14 +1,20 @@
 package tsc.web.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.util.TypeUtils;
+
 import tsc.web.bean.AppointmentBean;
 import tsc.web.bean.ErrorBean;
 import tsc.web.bean.FeedBackBean;
+import tsc.web.bean.JsonBean;
+import tsc.web.bean.SeatBean;
 import tsc.web.bean.UserBean;
 import tsc.web.bean.request.ChangeAppointmentStatusRequestBean;
 import tsc.web.bean.request.ChangeAppointmentStatusResponseBean;
@@ -20,7 +26,9 @@ import tsc.web.bean.request.ViewAppointmentResponseBean;
 import tsc.web.framework.Control;
 import tsc.web.framework.Controller;
 import tsc.web.service.AppointmentService;
+import tsc.web.utils.Constants;
 import tsc.web.utils.FunUtils;
+import tsc.web.utils.MessageUtils;
 
 @Control("/control/appointment")
 public class AppointmentController implements Controller{
@@ -62,6 +70,7 @@ public class AppointmentController implements Controller{
 			if(result== HttpResponseBean.SERVICE_SUCCESS){
 				
 				// Go to ....
+				//webPageResponse(request, response, "/");
 				
 			}else{
 				
@@ -88,11 +97,12 @@ public class AppointmentController implements Controller{
 		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
 		if(sesseionObj instanceof UserBean){
 				ViewAppointmentRequestBean requestBean = new ViewAppointmentRequestBean(request);
+				
 				UserBean user = (UserBean) sesseionObj;
 				if(requestBean.validData()){
 				ViewAppointmentResponseBean responseBean = mService.getAppointments(user, requestBean);
 				if(responseBean.isSuccess()){
-					webPageResponse();
+					
 				}
 				else{
 					FeedBackBean feedBack = responseBean.getFeedback();
@@ -132,15 +142,51 @@ public class AppointmentController implements Controller{
 				
 			}
 	}
+	
+	
+	
+	public void getAvaSeats(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+			
+		
+	
+		PrintWriter out = null;
+		int code = Constants.SUCCESS;
+		String message = MessageUtils.MSG_SUCCESS;
+		JsonBean json = new JsonBean(code, message, null);
+		String result = null;
+		try {
+			int role = TypeUtils.castToInt(request.getParameter("role"));
+			int exam = TypeUtils.castToInt(request.getParameter("exam"));
+			List<SeatBean> seats = mService.getAvaSeats(exam, role);
+			response.setContentType("text/json;charset=utf-8");
+			out = response.getWriter();
+			json.setData(seats);
+			result = JSON.toJSONString(json);
+			out.print(result);
+		} catch (Exception e) {
+			json = new JsonBean(Constants.ERROR_RUNTIME_EXCEPTION,
+					MessageUtils.MSG_ERROR_RUNTIME, null);
+			String str = JSON.toJSONString(json);
+			out.print(str);
+		
+		} finally {
+			out.flush();
+			out.close();
+		}
+	}
+
+	
 
 	@Override
-	public void webPageResponse() {
+	public void jsonDataResponse() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void jsonDataResponse() {
+	public void webPageResponse() {
 		// TODO Auto-generated method stub
 		
 	}

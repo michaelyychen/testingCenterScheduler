@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.alibaba.fastjson.util.TypeUtils;
 
 import tsc.web.bean.AppointmentBean;
+import tsc.web.utils.FunUtils;
 import tsc.web.utils.LogUtils;
 
 public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBean>{
@@ -20,6 +21,7 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 	
 	
 	AppointmentBean appointment;
+	int userRole;
 	
 	public CreateAppointmentRequestBean(HttpServletRequest request) {
 		super(request);
@@ -55,9 +57,16 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 		appointment.setStudent(mRequest.getParameter(PARA_APPOINTMENT_STU_ID));
 		appointment.setStartTime(TypeUtils.castToTimestamp(mRequest.getParameter(PARA_APPOINTMENT_STARTTIME)));
 		appointment.setEndTime(TypeUtils.castToTimestamp(mRequest.getParameter(PARA_APPOINTMENT_ENDTIME)));
-
+		userRole = FunUtils.getUser(mRequest).getRole();
 
 		
+	}
+	
+	public int getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
 	}
 
 	@Override
