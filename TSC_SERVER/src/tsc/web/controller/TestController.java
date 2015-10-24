@@ -50,7 +50,10 @@ public class TestController  implements Controller  {
 	public void testFindUser(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
-		
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
 		
 		UserBean user = userDataManager.findUser("sunyu90@hotmail.com", "101131607","123456");
 	

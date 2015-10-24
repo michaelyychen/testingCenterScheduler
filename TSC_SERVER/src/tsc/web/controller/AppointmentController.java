@@ -48,6 +48,11 @@ public class AppointmentController implements Controller{
 	public void makeAppointment(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
+		
 		CreateAppointmentRequestBean requestBean = new CreateAppointmentRequestBean(request);
 		if(requestBean.validData()){
 			
@@ -74,6 +79,10 @@ public class AppointmentController implements Controller{
 	
 	public void viewAppointments(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
 		
 		HttpSession session = request.getSession();
 		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
@@ -100,6 +109,11 @@ public class AppointmentController implements Controller{
 	
 	public void updateAppointment(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
 		
 			UserBean user = FunUtils.getUser(request);
 			if(user!=null){
