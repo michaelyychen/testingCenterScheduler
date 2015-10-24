@@ -3,7 +3,13 @@ package tsc.web.bean;
 import java.sql.Timestamp;
 
 public class ExamBean {
-	
+	private int _id;
+	public int get_id() {
+		return _id;
+	}
+	public void set_id(int _id) {
+		this._id = _id;
+	}
 	private String identifier;
 	private int courseId;
 	private int duration;

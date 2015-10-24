@@ -4,6 +4,8 @@ import tsc.web.bean.ExamBean;
 import tsc.web.bean.RequestBean;
 import tsc.web.bean.request.CreateReqRequestBean;
 import tsc.web.bean.request.CreateReqResponseBean;
+import tsc.web.bean.request.ViewReqRequestBean;
+import tsc.web.bean.request.ViewReqResponseBean;
 import tsc.web.dao.AppointmentDao;
 import tsc.web.dao.RequestDao;
 import tsc.web.utils.DaoFactory;
@@ -39,6 +41,12 @@ public class RequestService {
 				
 		return responseBean;
 		
+	}
+
+
+	public ViewReqResponseBean getRequestList(ViewReqRequestBean resquestBean) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

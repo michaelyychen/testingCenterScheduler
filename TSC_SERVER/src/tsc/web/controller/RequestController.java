@@ -2,12 +2,16 @@ package tsc.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tsc.web.bean.ErrorBean;
 import tsc.web.bean.FeedBackBean;
+import tsc.web.bean.UserBean;
 import tsc.web.bean.request.CreateReqRequestBean;
 import tsc.web.bean.request.CreateReqResponseBean;
 import tsc.web.bean.request.HttpResponseBean;
+import tsc.web.bean.request.ViewReqRequestBean;
+import tsc.web.bean.request.ViewReqResponseBean;
 import tsc.web.framework.Controller;
 import tsc.web.service.RequestService;
 
@@ -49,7 +53,6 @@ public class RequestController implements Controller {
 	public void makeRequest(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		CreateReqRequestBean requestBean = new CreateReqRequestBean(request);
-		//request.getSession().getAttribute(arg0)
 		if(requestBean.validData()){
 			CreateReqResponseBean responseBean = service.addRequest(requestBean);
 			
@@ -72,8 +75,27 @@ public class RequestController implements Controller {
 			}
 	}
 	
-	public void viewRequests(HttpServletRequest request, HttpServletResponse response){
-		
+	public void viewRequests(HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		HttpSession session = request.getSession();
+//		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
+//		if(sesseionObj instanceof UserBean){
+//			UserBean user = (UserBean) sesseionObj;
+//			ViewReqRequestBean requestBean = new ViewReqRequestBean(request);
+//			if(requestBean.validData()){
+//				
+//			}
+//		}
+		ViewReqRequestBean resquestBean = new ViewReqRequestBean(request);
+		if(resquestBean.validData()){
+			ViewReqResponseBean responseBean = service.getRequestList(resquestBean);
+			if(responseBean.isSuccess()){
+				webPageResponse();
+			}
+			else{
+				FeedBackBean feedBack = responseBean.getFeedback();
+				errorPage(request, response, feedBack.getMessage());
+			}
+		}
 		
 	}
 }
