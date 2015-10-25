@@ -17,6 +17,8 @@ public class ExamBean {
 	private Timestamp endTime;
 	private int examType;
 	private int examNumber;
+	private String className;
+	private int term;
 	
 	public int getExamNumber() {
 		return examNumber;
@@ -59,6 +61,18 @@ public class ExamBean {
 	}
 	public void setExamType(int examType) {
 		this.examType = examType;
+	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	public int getTerm() {
+		return term;
+	}
+	public void setTerm(int term) {
+		this.term = term;
 	}
 	
 	

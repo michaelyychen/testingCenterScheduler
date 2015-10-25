@@ -2,7 +2,10 @@ package tsc.web.service;
 
 import java.util.List;
 
+import com.sun.org.apache.regexp.internal.REUtil;
+
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.ExamBean;
 import tsc.web.bean.FeedBackBean;
 import tsc.web.bean.SeatBean;
 import tsc.web.bean.UserBean;
@@ -37,10 +40,25 @@ public class AppointmentService {
 		if(appointmentDao.getOverlappingTime(appointment.getStartTime(), 
 				appointment.getEndTime(), 
 				appointment.getStudent())==0){
-			
+			 List<SeatBean> seats = appointmentDao.getAvaSeats(appointment.getExamId(), 1);
 			 if(httpRequestBean.getUserRole()==1||appointment.getSeatId()==0){
-				 appointment.setSeatId(appointmentDao.getAvaSeats(appointment.getExamId(), 1).get(0).get_id());
+				
+				 if(seats==null||seats.size()==0){
+					 mResponseBean.setResult(FeedBackUtils.FB_CODE_NO_SEATS_AVA);
+					 return mResponseBean;
+				 }else{
+					 appointment.setSeatId(seats.get(0).get_id());
+				 }
+				
+			 }else{
+				 //check seat availibility
+				 if(!checkSeatIsAva(appointment, seats)){
+					 mResponseBean.setResult(FeedBackUtils.FB_CODE_APPOINTMENT_SEAT_YOUR_CHOOSE_IS_NOT_AVA_ANY_MORE);
+					 return mResponseBean;
+				 }
+				 
 			 }
+			 
 			
 			int id = appointmentDao.addAppointment(appointment.getExamId(), appointment.getStatus(), appointment.getStudent(), appointment.getSeatId());
 			if(id>0){
@@ -56,6 +74,19 @@ public class AppointmentService {
 		
 		return mResponseBean;
 		
+	}
+
+
+	private boolean checkSeatIsAva(AppointmentBean appointment,
+			List<SeatBean> seats) {
+		boolean checkSeat = false;
+		 for(SeatBean seat : seats){
+			 if(seat.get_id()==appointment.getSeatId()){
+				 checkSeat = true;
+				 break;
+			 }
+		 }
+		 return  checkSeat;
 	}
 
 
@@ -99,6 +130,20 @@ public class AppointmentService {
 		return appointmentDao.getAvaSeats(examId, role);
 		
 	}
+
+
+	public List<ExamBean> getExams(UserBean user) {
+		// TODO Auto-generated method stub
+		 List<ExamBean> exams = null;
+		if(user!=null){
+			exams = appointmentDao.getExams(user.getUserId(), user.getRole());
+		}
+		return exams;
+	}
+	
+	
+	
+	
 
 
 

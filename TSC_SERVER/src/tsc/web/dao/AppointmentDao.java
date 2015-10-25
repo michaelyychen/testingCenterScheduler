@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.ExamBean;
 import tsc.web.bean.SeatBean;
 
 public interface AppointmentDao {
@@ -17,5 +18,5 @@ public interface AppointmentDao {
 	List<SeatBean> getAvaSeats(int examId,int role);
 	
 	int getOverlappingTime(Timestamp start,Timestamp end,String student);
-	
+    List<ExamBean> getExams(String studentId, int role);
 }

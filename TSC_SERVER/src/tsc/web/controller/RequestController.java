@@ -42,11 +42,7 @@ public class RequestController implements Controller {
 
 	}
 
-	@Override
-	public void webPageResponse() {
-		// TODO Auto-generated method stub
 
-	}
 
 	@Override
 	public void jsonDataResponse() {
@@ -103,7 +99,7 @@ public class RequestController implements Controller {
 		if(resquestBean.validData()){
 			ViewReqResponseBean responseBean = service.getRequestList(resquestBean);
 			if(responseBean.isSuccess()){
-				webPageResponse();
+				
 			}
 			else{
 				FeedBackBean feedBack = responseBean.getFeedback();
@@ -134,6 +130,13 @@ public class RequestController implements Controller {
 			errorPage(request, response, "Please Login.");
 			
 		}
+	}
+
+	@Override
+	public void webPageResponse(HttpServletRequest request,
+			HttpServletResponse response, String path) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

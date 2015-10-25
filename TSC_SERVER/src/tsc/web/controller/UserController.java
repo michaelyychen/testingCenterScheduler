@@ -60,14 +60,16 @@ public class UserController implements Controller{
 		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	}
 
+
 	@Override
-	public void webPageResponse() {
+	public void jsonDataResponse() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void jsonDataResponse() {
+	public void webPageResponse(HttpServletRequest request,
+			HttpServletResponse response, String path) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

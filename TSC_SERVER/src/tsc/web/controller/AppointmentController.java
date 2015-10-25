@@ -1,8 +1,10 @@
 package tsc.web.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import com.alibaba.fastjson.util.TypeUtils;
 
 import tsc.web.bean.AppointmentBean;
 import tsc.web.bean.ErrorBean;
+import tsc.web.bean.ExamBean;
 import tsc.web.bean.FeedBackBean;
 import tsc.web.bean.JsonBean;
 import tsc.web.bean.SeatBean;
@@ -35,6 +38,8 @@ public class AppointmentController implements Controller{
 
 	AppointmentService mService = new AppointmentService();
 	
+	public static final String PAGE_ATTR_EXAMS = "exams";
+	
 	
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +56,21 @@ public class AppointmentController implements Controller{
 		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	}
 	
-	
+
+	public void goTomakeAppointment(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		if(!FunUtils.isLogin(request)){
+			FunUtils.goToLoginPage(response);
+			return;
+		}
+		
+		UserBean user = FunUtils.getUser(request);
+		List<ExamBean> exams = mService.getExams(user);
+		request.setAttribute(PAGE_ATTR_EXAMS, exams);
+		webPageResponse(request,response,"/student.jsp");
+		
+	}
 
 	public void makeAppointment(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -186,9 +205,9 @@ public class AppointmentController implements Controller{
 	}
 
 	@Override
-	public void webPageResponse() {
-		// TODO Auto-generated method stub
+	public void webPageResponse(HttpServletRequest request, HttpServletResponse response,String path) throws Exception {
 		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 	
 

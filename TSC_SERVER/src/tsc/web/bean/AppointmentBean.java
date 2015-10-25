@@ -12,7 +12,7 @@ public class AppointmentBean {
 	private String seatNumber;
 	private Timestamp startTime;
 	private Timestamp endTime;
-	
+	int termId;
 	
 	
 	public AppointmentBean() {
@@ -82,6 +82,16 @@ public class AppointmentBean {
 	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
+
+	public int getTermId() {
+		return termId;
+	}
+
+	public void setTermId(int termId) {
+		this.termId = termId;
+	}
+	
+	
 	
 	
 	

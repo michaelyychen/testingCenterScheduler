@@ -166,7 +166,7 @@ public class TestController  implements Controller  {
 		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	}
 	
-	private void outHTML(HttpServletResponse response, Object num) {
+	public static void outHTML(HttpServletResponse response, Object num) {
 		response.setContentType("text/json;charset=utf-8");
 		PrintWriter out = null;
 		int code = Constants.SUCCESS;
@@ -195,8 +195,12 @@ public class TestController  implements Controller  {
 
 
 
+
+
+
+
 	@Override
-	public void webPageResponse() {
+	public void jsonDataResponse() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -207,7 +211,8 @@ public class TestController  implements Controller  {
 
 
 	@Override
-	public void jsonDataResponse() {
+	public void webPageResponse(HttpServletRequest request,
+			HttpServletResponse response, String path) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

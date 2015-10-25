@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.ExamBean;
 import tsc.web.bean.SeatBean;
 import tsc.web.dao.AppointmentDao;
 import tsc.web.utils.BeanListHandler;
@@ -159,7 +160,23 @@ public class AppointmentDataManager implements AppointmentDao{
 	
 	
 	
-
+	@Override
+	public List<ExamBean> getExams(String studentId, int role) {
+		String sql = "{call get_student_exams(?,?)}";
+		List params = new ArrayList();
+		params.add(studentId);
+		params.add(role);
+		List<ExamBean> result = null;
+		try {
+			result = (List<ExamBean>) JdbcUtils.queryByProc(sql,params,new BeanListHandler(ExamBean.class));
+		} catch (Exception e) {
+			LogUtils.outputError(CLASS_NAME, "getExams", e.getMessage());
+			return result;
+		}finally{
+			LogUtils.outputDB(CLASS_NAME, "getExams", DBUtils.convertToText(sql, studentId,role));
+		}
+		return result;
+	}
 	
 
 
