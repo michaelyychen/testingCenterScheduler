@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.util.TypeUtils;
 
-import tsc.web.bean.CourseBean;
+import tsc.web.bean.ClassBean;
 import tsc.web.bean.RequestBean;
 import tsc.web.bean.UserBean;
 import tsc.web.controller.UserController;
@@ -55,14 +55,14 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 		requestBean.getExam().setExamNumber(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_NUMBER)));
 		String courseJson = mRequest.getParameter(PARA_COURSE);
 		if(courseJson != null && courseJson.trim().length() > 0){
-			requestBean.setCourse(JSON.parseObject(courseJson, CourseBean.class));
-			requestBean.getExam().setCourseId(requestBean.getCourse().get_id());
+			requestBean.setClassBean(JSON.parseObject(courseJson, ClassBean.class));
+			requestBean.getExam().setClassId(requestBean.getClassBean().get_id());
 		}
 	}
 	
 	private String examIdentifier() {
 		// TODO Auto-generated method stub
-		String coursename = requestBean.getCourse().getCourseIdentifier();
+		String coursename = requestBean.getClassBean().getClassName();
 		String examnumber = TypeUtils.castToString(requestBean.getExam().getExamNumber());
 		return coursename + "_0" + examnumber;
 	}

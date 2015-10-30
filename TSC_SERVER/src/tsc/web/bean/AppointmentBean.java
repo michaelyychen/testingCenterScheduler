@@ -16,7 +16,7 @@ public class AppointmentBean {
 	
 	
 	public AppointmentBean() {
-	
+
 	}
 
 	public int get_id() {

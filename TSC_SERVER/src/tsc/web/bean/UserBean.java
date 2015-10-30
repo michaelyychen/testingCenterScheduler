@@ -69,5 +69,13 @@ public class UserBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "UserBean [_id=" + _id + ", userId=" + userId + ", password="
+				+ password + ", role=" + role + ", email=" + email
+				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+	
 	
 }

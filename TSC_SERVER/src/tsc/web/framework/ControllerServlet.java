@@ -39,6 +39,7 @@ public class ControllerServlet extends HttpServlet {
 
 	public static String website_root;
 	public static String root = null;
+	public static String file_root = null;
 	public static String dir_log = null;
 	public static Date lastTime;
 
@@ -56,7 +57,7 @@ public class ControllerServlet extends HttpServlet {
 	public void init() throws ServletException {
 		try{
 			website_root = this.getServletContext().getRealPath("/WEB-INF");
-			root = this.getServletContext().getRealPath("/file");
+			file_root = this.getServletContext().getRealPath("/files");
 			dir_log = this.getServletContext().getRealPath("/file/logs");
 			String classpath = this.getServletContext().getRealPath("/WEB-INF/classes");
 			

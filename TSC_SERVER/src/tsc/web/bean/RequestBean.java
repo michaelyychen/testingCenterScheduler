@@ -14,7 +14,7 @@ public class RequestBean {
 	private int userId;
 	private ExamBean exam;
 	private int status;
-	private CourseBean course;
+	private ClassBean classBean;
 	
 	public RequestBean() {
 		// TODO Auto-generated constructor stub
@@ -40,15 +40,15 @@ public class RequestBean {
 		this.status = status;
 	}
 
-	public void setCourse(CourseBean parseObject) {
-		// TODO Auto-generated method stub
-		course = parseObject;
-		
+	public ClassBean getClassBean() {
+		return classBean;
 	}
 
-	public CourseBean getCourse() {
-		return course;
+	public void setClassBean(ClassBean classBean) {
+		this.classBean = classBean;
 	}
+
+	
 	
 	
 	

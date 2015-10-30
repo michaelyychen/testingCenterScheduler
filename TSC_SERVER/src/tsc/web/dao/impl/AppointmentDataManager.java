@@ -175,6 +175,30 @@ public class AppointmentDataManager implements AppointmentDao{
 		}finally{
 			LogUtils.outputDB(CLASS_NAME, "getExams", DBUtils.convertToText(sql, studentId,role));
 		}
+		
+		
+		//get adhoc exam
+		result.addAll(getAdHocExams(studentId, role));
+		
+		return result;
+	}
+
+	@Override
+	public List<ExamBean> getAdHocExams(String studentId, int role) {
+		String sql = "{call get_adhoc_exam(?,?)}";
+		List params = new ArrayList();
+		params.add(studentId);
+		params.add(role);
+		List<ExamBean> result = null;
+		try {
+			result = (List<ExamBean>) JdbcUtils.queryByProc(sql,params,new BeanListHandler(ExamBean.class));
+		} catch (Exception e) {
+			LogUtils.outputError(CLASS_NAME, "getAdHocExams", e.getMessage());
+			return result;
+		}finally{
+			LogUtils.outputDB(CLASS_NAME, "getAdHocExams", DBUtils.convertToText(sql, studentId,role));
+		}
+		
 		return result;
 	}
 	

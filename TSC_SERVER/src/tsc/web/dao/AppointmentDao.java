@@ -19,4 +19,5 @@ public interface AppointmentDao {
 	
 	int getOverlappingTime(Timestamp start,Timestamp end,String student);
     List<ExamBean> getExams(String studentId, int role);
+    List<ExamBean> getAdHocExams(String studentId, int role);
 }

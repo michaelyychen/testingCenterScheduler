@@ -34,7 +34,7 @@ public class RequestService {
 		ExamBean exam = examRequest.getExam();
 		if(exam!=null){
 		//	int examId = requestDao.addExam(exam.getCourseId(), exam.getExamIdentifier(),exam.getExamType(), exam.getBeginDate(), exam.getEndDate(), exam.getDuration(), exam.getTerm());
-			int examId = requestDao.addExam(exam.getCourseId(), exam.getIdentifier(), exam.getExamType(), exam.getBeginTime(), exam.getEndTime(), exam.getDuration(), examRequest.getCourse().getTermId());
+			int examId = requestDao.addExam(exam.getClassId(), exam.getIdentifier(), exam.getExamType(), exam.getBeginTime(), exam.getEndTime(), exam.getDuration(), examRequest.getClassBean().getTerm());
 			if(examId>0){
 				int requestId = requestDao.addRequest(examRequest.getUserId(), examId, examRequest.getStatus());
 			}else{
@@ -57,12 +57,10 @@ public class RequestService {
 			int userId = resquestBean.get_id();
 			List<RequestBean> requests =  requestDao.getRequests(role, userId);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			responseBean.setResult(FeedBackUtils.FB_CODE_GLOBAL_EXCEPTION);
 		}finally{
 			
 		}
-		
 		return responseBean;
 	}
 

@@ -11,7 +11,7 @@ public class ExamBean {
 		this._id = _id;
 	}
 	private String identifier;
-	private int courseId;
+	private int classId;
 	private int duration;
 	private Timestamp  beginTime;
 	private Timestamp endTime;
@@ -32,11 +32,14 @@ public class ExamBean {
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
-	public int getCourseId() {
-		return courseId;
+
+
+	
+	public int getClassId() {
+		return classId;
 	}
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setClassId(int classId) {
+		this.classId = classId;
 	}
 	public int getDuration() {
 		return duration;
