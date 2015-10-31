@@ -3,8 +3,10 @@ package tsc.web.service;
 import java.util.List;
 
 import com.sun.org.apache.regexp.internal.REUtil;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Appinfo;
 
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.AppointmentReminderBean;
 import tsc.web.bean.ExamBean;
 import tsc.web.bean.FeedBackBean;
 import tsc.web.bean.SeatBean;
@@ -140,6 +142,13 @@ public class AppointmentService {
 		}
 		return exams;
 	}
+	
+	public List<AppointmentReminderBean> getReminders(){
+		
+		return appointmentDao.getReminders();
+		
+	}
+	
 	
 	
 	

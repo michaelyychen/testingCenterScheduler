@@ -26,10 +26,19 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
+
 import org.apache.commons.io.FileUtils;
 
 
+
+
+
+import tsc.web.bean.AppointmentReminderBean;
+import tsc.web.service.AppointmentService;
 import tsc.web.utils.DaoFactory;
+import tsc.web.utils.EmailUtil;
 
 
 public class ControllerServlet extends HttpServlet {
@@ -45,7 +54,7 @@ public class ControllerServlet extends HttpServlet {
 
 	public static Date current;
 	public static int alertCount = 0;
-	
+	Timer reminderTimer;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -56,6 +65,22 @@ public class ControllerServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		try{
+//			reminderTimer = new Timer("reminderTimer");
+//			reminderTimer.schedule(new TimerTask() {
+//				
+//				@Override
+//				public void run() {
+//					// TODO Auto-generated method stub
+//					List<AppointmentReminderBean> reminders = new AppointmentService().getReminders();
+//					if(reminders.size()>0){
+//						for(AppointmentReminderBean reminder : reminders){
+//							EmailUtil.getInstance().send("sbu.testing.scheduler.center@gmail.com", "Sy83448095",
+//									reminder.getEmail(),"Exam Reminder" ,reminder.getEmailContent());
+//							
+//						}
+//					}
+//				}
+//			}, 1000,1000*60*1000);
 			website_root = this.getServletContext().getRealPath("/WEB-INF");
 			file_root = this.getServletContext().getRealPath("/files");
 			dir_log = this.getServletContext().getRealPath("/file/logs");

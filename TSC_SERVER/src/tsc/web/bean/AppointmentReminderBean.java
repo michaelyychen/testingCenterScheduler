@@ -11,6 +11,7 @@ public class AppointmentReminderBean {
 	private String exam;
 	private String className;
 	private Timestamp startTime;
+	private String seatNumber;
 	
 	public AppointmentReminderBean() {
 		
@@ -64,5 +65,20 @@ public class AppointmentReminderBean {
 		this.className = className;
 	}
 	
+	public String getSeatNumber() {
+		return seatNumber;
+	}
+
+	public void setSeatNumber(String seatNumber) {
+		this.seatNumber = seatNumber;
+	}
+
+	public String getEmailContent(){
+		
+		StringBuffer sb = new StringBuffer("Dear ").append(lastName).append(":<Br><br>You have a upcoming exam, the information as blow:<br><br>")
+				.append("Course: ").append(className).append("<br/>Seat Number: "+seatNumber).append(("<br/>Time: "+startTime.toLocaleString()))
+				.append("<br/><br/> Stony Brook Testing Scheduler Center.");
+		return sb.toString();
+	}
 	
 }
