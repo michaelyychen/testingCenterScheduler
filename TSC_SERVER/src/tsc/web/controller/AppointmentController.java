@@ -68,7 +68,7 @@ public class AppointmentController implements Controller{
 		UserBean user = FunUtils.getUser(request);
 		List<ExamBean> exams = mService.getExams(user);
 		request.setAttribute(PAGE_ATTR_EXAMS, exams);
-		webPageResponse(request,response,"/student.jsp");
+		webPageResponse(request,response,"/appintment.jsp");
 		
 	}
 
