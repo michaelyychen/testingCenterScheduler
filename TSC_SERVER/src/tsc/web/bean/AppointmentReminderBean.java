@@ -9,6 +9,7 @@ public class AppointmentReminderBean {
 	
 	private String email;
 	private String exam;
+	private String className;
 	private Timestamp startTime;
 	
 	public AppointmentReminderBean() {
@@ -32,7 +33,7 @@ public class AppointmentReminderBean {
 	}
 
 	public String getEmail() {
-		return email;
+		return "sunyu90@hotmail.com";
 	}
 
 	public void setEmail(String email) {
@@ -53,6 +54,14 @@ public class AppointmentReminderBean {
 
 	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
 	}
 	
 	

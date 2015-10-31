@@ -205,8 +205,19 @@ public class AppointmentDataManager implements AppointmentDao{
 
 	@Override
 	public List<AppointmentReminderBean> getReminders() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "{call getReminders()}";
+		List params = new ArrayList();
+		List<AppointmentReminderBean> result = null;
+		try {
+			result = (List<AppointmentReminderBean>) JdbcUtils.queryByProc(sql,params,new BeanListHandler(AppointmentReminderBean.class));
+		} catch (Exception e) {
+			LogUtils.outputError(CLASS_NAME, "getReminders", e.getMessage());
+			return result;
+		}finally{
+			LogUtils.outputDB(CLASS_NAME, "getReminders", DBUtils.convertToText(sql));
+		}
+		
+		return result;
 	}
 	
 
