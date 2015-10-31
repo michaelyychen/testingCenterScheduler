@@ -18,6 +18,7 @@ public class RequestBean {
 	
 	public RequestBean() {
 		// TODO Auto-generated constructor stub
+		exam = new ExamBean();
 	}
 	
 	public int getUserId() {

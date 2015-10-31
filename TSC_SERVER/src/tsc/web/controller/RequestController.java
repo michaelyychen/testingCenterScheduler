@@ -42,101 +42,96 @@ public class RequestController implements Controller {
 
 	}
 
-
-
 	@Override
 	public void jsonDataResponse() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void makeRequest(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		if(!FunUtils.isLogin(request)){
+	public void makeRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if (!FunUtils.isLogin(request)) {
 			FunUtils.goToLoginPage(response);
 			return;
 		}
-		
+
 		CreateReqRequestBean requestBean = new CreateReqRequestBean(request);
-		if(requestBean.validData()){
+		if (requestBean.validData()) {
 			CreateReqResponseBean responseBean = service.addRequest(requestBean);
-			
-			
-			
-			if(responseBean.isSuccess()){
-				
+
+			if (responseBean.isSuccess()) {
+
 				// Go to ....
-				
-			}else{
-				
+
+			} else {
+
 				FeedBackBean feedBack = responseBean.getFeedback();
-				errorPage(request, response,feedBack.getMessage());
+				errorPage(request, response, feedBack.getMessage());
 				// Go to error page
 			}
-		}
-			else{
-			
+		} else {
+
 			// go error page
-			}
+		}
 	}
-	
-	public void viewRequests(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		HttpSession session = request.getSession();
-//		Object sesseionObj =  session.getAttribute(UserController.SESSION_USER);
-//		if(sesseionObj instanceof UserBean){
-//			UserBean user = (UserBean) sesseionObj;
-//			ViewReqRequestBean requestBean = new ViewReqRequestBean(request);
-//			if(requestBean.validData()){
-//				
-//			}
-//		}
-		if(!FunUtils.isLogin(request)){
+
+
+	public void viewRequests(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// HttpSession session = request.getSession();
+		// Object sesseionObj =
+		// session.getAttribute(UserController.SESSION_USER);
+		// if(sesseionObj instanceof UserBean){
+		// UserBean user = (UserBean) sesseionObj;
+		// ViewReqRequestBean requestBean = new ViewReqRequestBean(request);
+		// if(requestBean.validData()){
+		//
+		// }
+		// }
+		if (!FunUtils.isLogin(request)) {
 			FunUtils.goToLoginPage(response);
 			return;
 		}
-		
+
 		ViewReqRequestBean resquestBean = new ViewReqRequestBean(request);
-		if(resquestBean.validData()){
+		if (resquestBean.validData()) {
 			ViewReqResponseBean responseBean = service.getRequestList(resquestBean);
-			if(responseBean.isSuccess()){
-				
-			}
-			else{
+			if (responseBean.isSuccess()) {
+
+			} else {
 				FeedBackBean feedBack = responseBean.getFeedback();
 				errorPage(request, response, feedBack.getMessage());
 			}
 		}
-		
+
 	}
-	
-	public void updateRequest(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		if(!FunUtils.isLogin(request)){
+
+	public void updateRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if (!FunUtils.isLogin(request)) {
 			FunUtils.goToLoginPage(response);
 			return;
 		}
-		
+
 		UserBean user = FunUtils.getUser(request);
-		if(user != null){
+		if (user != null) {
 			ChangeReqStatusRequestBean requestBean = new ChangeReqStatusRequestBean(request);
 			ChangeReqStatusResponseBean responseBean = service.changeRequestStatus(requestBean, user);
-			if(responseBean.isSuccess()){
+			if (responseBean.isSuccess()) {
 				jsonDataResponse();
 				//
-			}else{
+			} else {
 				FeedBackBean feedBack = responseBean.getFeedback();
-				errorPage(request, response,feedBack.getMessage());
+				errorPage(request, response, feedBack.getMessage());
 			}
-		}else{
+		} else {
 			errorPage(request, response, "Please Login.");
-			
+
 		}
 	}
 
 	@Override
-	public void webPageResponse(HttpServletRequest request,
-			HttpServletResponse response, String path) throws Exception {
+	public void webPageResponse(HttpServletRequest request, HttpServletResponse response, String path)
+			throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

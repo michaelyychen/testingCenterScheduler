@@ -36,18 +36,18 @@ public class AppointmentService {
 		CreateAppointmentResponseBean mResponseBean = new CreateAppointmentResponseBean();
 		
 		AppointmentBean appointment = httpRequestBean.getObject();
-		
 		if(appointmentDao.getOverlappingTime(appointment.getStartTime(), 
 				appointment.getEndTime(), 
 				appointment.getStudent())==0){
 			 List<SeatBean> seats = appointmentDao.getAvaSeats(appointment.getExamId(), 1);
+			
 			 if(httpRequestBean.getUserRole()==1||appointment.getSeatId()==0){
 				
 				 if(seats==null||seats.size()==0){
 					 mResponseBean.setResult(FeedBackUtils.FB_CODE_NO_SEATS_AVA);
 					 return mResponseBean;
 				 }else{
-					 appointment.setSeatId(seats.get(0).get_id());
+					 appointment.setSeatId(seats.get(0).get_id()); // return adjacent seat
 				 }
 				
 			 }else{

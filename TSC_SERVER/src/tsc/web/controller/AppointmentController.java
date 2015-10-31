@@ -195,7 +195,15 @@ public class AppointmentController implements Controller{
 			out.close();
 		}
 	}
-
+	
+	// 3
+	public void checkInStudent(HttpServletRequest request, HttpServletResponse response){
+		
+	}
+	// 8
+	public void generateReport(HttpServletRequest request, HttpServletResponse response){
+		
+	}
 	
 
 	@Override

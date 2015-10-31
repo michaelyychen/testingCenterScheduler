@@ -41,6 +41,7 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 		if(appointment.getStatus()<=0){
 			return false;
 		}
+		// admin don't indicate stu ID, comment out
 		if(appointment.getStudent()==null||appointment.getStudent().trim().length()==0){
 			return false;
 		}

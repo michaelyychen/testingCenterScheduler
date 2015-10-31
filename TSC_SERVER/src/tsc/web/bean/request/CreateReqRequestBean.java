@@ -37,7 +37,7 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 	@Override
 	public void parseData() {
 		// TODO Auto-generated method stub
-		requestBean.getExam().setIdentifier(examIdentifier());
+		
 		
 		requestBean.getExam().setBeginTime(TypeUtils.castToTimestamp(mRequest.getParameter(PARA_EXAM_BEGIN_TIME)));
 		requestBean.getExam().setEndTime(TypeUtils.castToTimestamp(mRequest.getParameter(PARA_EXAM_END_TIME)));
@@ -50,6 +50,7 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 //			UserBean user = (UserBean) sesseionObj;
 //			requestBean.setUserId(TypeUtils.castToInt(user.get_id()));
 //		}
+		requestBean.getExam().setTerm(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_TERM)));
 		requestBean.set_id(FunUtils.getUser(mRequest).get_id());
 		requestBean.setStatus(TypeUtils.castToInt(mRequest.getParameter(PARA_REQUEST_STATUS)));
 		requestBean.getExam().setExamNumber(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_NUMBER)));
@@ -58,13 +59,15 @@ public class CreateReqRequestBean extends HttpRequestBean<RequestBean> {
 			requestBean.setClassBean(JSON.parseObject(courseJson, ClassBean.class));
 			requestBean.getExam().setClassId(requestBean.getClassBean().get_id());
 		}
+		requestBean.getExam().setIdentifier(examIdentifier());
 	}
 	
 	private String examIdentifier() {
 		// TODO Auto-generated method stub
-		String coursename = requestBean.getClassBean().getClassName();
+		String classname = requestBean.getClassBean().getClassName();
 		String examnumber = TypeUtils.castToString(requestBean.getExam().getExamNumber());
-		return coursename + "_0" + examnumber;
+		String termnumber = TypeUtils.castToString(requestBean.getExam().getTerm());
+		return classname + "_" + termnumber + "_" + examnumber;
 	}
 
 	@Override
