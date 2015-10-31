@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.AppointmentReminderBean;
 import tsc.web.bean.ExamBean;
 import tsc.web.bean.SeatBean;
 import tsc.web.dao.AppointmentDao;
@@ -200,6 +201,12 @@ public class AppointmentDataManager implements AppointmentDao{
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<AppointmentReminderBean> getReminders() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
