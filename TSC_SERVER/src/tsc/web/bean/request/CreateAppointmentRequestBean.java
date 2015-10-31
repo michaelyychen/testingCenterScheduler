@@ -25,7 +25,7 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 	
 	public CreateAppointmentRequestBean(HttpServletRequest request) {
 		super(request);
-		appointment = new AppointmentBean();
+		
 		
 	}
 
@@ -51,7 +51,7 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 
 	@Override
 	public void parseData() {
-		
+		appointment = new AppointmentBean();
 		appointment.setExamId(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_ID)));
 		appointment.setSeatId(TypeUtils.castToInt(mRequest.getParameter(PARA_APPOINTMENT_SEAT_ID)));
 		appointment.setStatus(TypeUtils.castToInt(mRequest.getParameter(PARA_APPOINTMENT_STATUS)));

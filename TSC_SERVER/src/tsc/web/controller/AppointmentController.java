@@ -54,6 +54,7 @@ public class AppointmentController implements Controller{
 		
 		request.setAttribute("error", new ErrorBean(message));
 		request.getRequestDispatcher("/error.jsp").forward(request, response);
+		
 	}
 	
 

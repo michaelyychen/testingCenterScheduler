@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tsc.web.bean.AppointmentBean;
+import tsc.web.bean.AppointmentReminderBean;
 import tsc.web.bean.ExamBean;
 import tsc.web.bean.SeatBean;
 import tsc.web.dao.AppointmentDao;
@@ -197,6 +198,23 @@ public class AppointmentDataManager implements AppointmentDao{
 			return result;
 		}finally{
 			LogUtils.outputDB(CLASS_NAME, "getAdHocExams", DBUtils.convertToText(sql, studentId,role));
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<AppointmentReminderBean> getReminders() {
+		String sql = "{call getReminders()}";
+		List params = new ArrayList();
+		List<AppointmentReminderBean> result = null;
+		try {
+			result = (List<AppointmentReminderBean>) JdbcUtils.queryByProc(sql,params,new BeanListHandler(AppointmentReminderBean.class));
+		} catch (Exception e) {
+			LogUtils.outputError(CLASS_NAME, "getReminders", e.getMessage());
+			return result;
+		}finally{
+			LogUtils.outputDB(CLASS_NAME, "getReminders", DBUtils.convertToText(sql));
 		}
 		
 		return result;
