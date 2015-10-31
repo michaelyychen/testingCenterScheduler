@@ -11,7 +11,7 @@
  Target Server Version : 50613
  File Encoding         : utf-8
 
- Date: 10/30/2015 14:01:06 PM
+ Date: 10/31/2015 14:03:20 PM
 */
 
 SET NAMES utf8;
@@ -125,7 +125,7 @@ CREATE TABLE `appointments` (
 --  Records of `appointments`
 -- ----------------------------
 BEGIN;
-INSERT INTO `appointments` VALUES ('18', '1', '3', '101131608', '1', '2015-10-25 14:38:18', '2015-10-26 14:38:20');
+INSERT INTO `appointments` VALUES ('18', '1', '3', '101131608', '1', '2015-11-03 12:38:18', '2015-11-03 13:38:20');
 COMMIT;
 
 -- ----------------------------
@@ -590,6 +590,31 @@ end
 delimiter ;
 
 -- ----------------------------
+--  Procedure structure for `getReminders`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `getReminders`;
+delimiter ;;
+CREATE  PROCEDURE `getReminders`()
+begin
+	declare _interval int;
+	select TSCInfo.reminderInterval into _interval FROM TSCInfo;
+	select users.firstName,users.lastName,users.email,classes.className,appointments.startTime,seats.seatNumber
+				from appointments,users,EXAMS,classes,seats
+				where 	
+							appointments.student = users.userId  
+						and 
+							appointments.examId = EXAMS._id
+						and 
+							EXAMS.classId = classes._id
+						and 
+							appointments.seatId = seats._id
+						and
+							UNIX_TIMESTAMP(startTime) - UNIX_TIMESTAMP(NOW()) < _interval * 60*1000;
+end
+ ;;
+delimiter ;
+
+-- ----------------------------
 --  Procedure structure for `get_adhoc_exam`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `get_adhoc_exam`;
@@ -617,12 +642,12 @@ delimiter ;;
 CREATE  PROCEDURE `get_appointments`(pstuId int, prole int, poffset int)
 begin
 	if prole = 3 then
-		select appointments.*,seats.seatNumber,courses.termId from appointments,seats,EXAMS,courses where appointments.seatId = seats._id 
-			and appointments.examId = EXAMS._id and EXAMS.courseId = courses._id
+		select appointments.*,seats.seatNumber,classes.term as termId from appointments,seats,EXAMS,classes where appointments.seatId = seats._id 
+			and appointments.examId = EXAMS._id and EXAMS.classId = classes._id
 			limit poffset,15;
 	else
-		select appointments.*,seats.seatNumber,courses.termId from appointments,seats,EXAMS,courses where appointments.student = pstuId and appointments.seatId = seats._id 
-		and appointments.examId = EXAMS._id and EXAMS.courseId = courses._id
+		select appointments.*,seats.seatNumber,courses.termId from appointments,seats,EXAMS,classes where appointments.student = pstuId and appointments.seatId = seats._id 
+		and appointments.examId = EXAMS._id and EXAMS.classId = classes._id
 		limit poffset,15;
 	end if;
 	
