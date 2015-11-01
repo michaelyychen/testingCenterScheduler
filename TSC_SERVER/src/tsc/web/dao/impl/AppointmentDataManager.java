@@ -23,6 +23,7 @@ public class AppointmentDataManager implements AppointmentDao{
 	@Override
 	public int updateAppoinmentStatus(int status, int id) {
 	
+	
 		String sql = "{call change_appointment_status(?,?)}";
 		List params = new ArrayList();
 		params.add(status);

@@ -4,6 +4,8 @@
 <%@page import="tsc.web.bean.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
 <jsp:include page="navigationBar.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,9 +108,9 @@
 													data-toggle="dropdown" href="#">Select an Exam <span
 													class="caret"></span></a>
 												<ul class="dropdown-menu">
-													<li><a href="#">CSE114</a></li>
-													<li><a href="#">CSE219</a></li>
-													<li><a href="#">CSE308</a></li>
+												<c:forEach var="exam" items="${exams}">
+													<li><a href="#">${exam.className}</a></li>
+												</c:forEach>
 												</ul>
 
 
@@ -160,12 +162,7 @@
 														class="caret"></span></a>
 													<ul class="dropdown-menu">
 													
-<%List<ExamBean> list = (List<ExamBean>)request.getAttribute("exams");%>
-							<%=list.get(0).getClassName() %>
-														<li><a href="#"></a></li>
-													
-													<!-- 	<li><a href="#">.</a></li>
-														<li><a href="#">.</a></li> -->
+														
 													</ul>
 
 
