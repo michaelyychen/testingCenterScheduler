@@ -1,4 +1,7 @@
+<%@page import="tsc.web.bean.ExamBean"%>
+<%@page import="java.util.*"%>
 <%@page import="com.alibaba.fastjson.JSON"%>
+<%@page import="tsc.web.bean.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <jsp:include page="navigationBar.jsp"></jsp:include>
@@ -142,7 +145,6 @@
 
 
 
-
 									<div class="form-group">
 
 										<label for="inputPassword" class="col-sm-2 control-label">Seat</label>
@@ -157,9 +159,13 @@
 														data-toggle="dropdown" href="#">Select a Seat <span
 														class="caret"></span></a>
 													<ul class="dropdown-menu">
-														<li><a href="#">.</a></li>
-														<li><a href="#">.</a></li>
-														<li><a href="#">.</a></li>
+													
+<%List<ExamBean> list = (List<ExamBean>)request.getAttribute("exams");%>
+							<%=list.get(0).getClassName() %>
+														<li><a href="#"></a></li>
+													
+													<!-- 	<li><a href="#">.</a></li>
+														<li><a href="#">.</a></li> -->
 													</ul>
 
 
@@ -185,7 +191,7 @@
 				<div class="row">
 
 
-					<a href="feedback_Sucess.jsp" target="mainarea">
+					<a href="${pageContext.request.contextPath}/feedback_Sucess.jsp" target="mainarea">
 						<button type="button" class="btn btn-primary" id="request">Submit
 							Request</button>
 					</a>
@@ -201,18 +207,18 @@
 	<!-- /#wrapper -->
 </body>
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
 
-<script src="js/moment.js"></script>
-<script src="js/en-gb.js"></script>
-<script src="js/bootstrap-datetimepicker.min.js"></script>
-<script src="js/collapse.js"></script>
-<script src="js/transition.js"></script>
+<script src="${pageContext.request.contextPath}/js/moment.js"></script>
+<script src="${pageContext.request.contextPath}/js/en-gb.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/collapse.js"></script>
+<script src="${pageContext.request.contextPath}/js/transition.js"></script>
 
 <script type="text/javascript">
            $(function () {
@@ -236,8 +242,9 @@
 
 		 </script>
 <!-- Morris Charts JavaScript -->
-<script src="js/plugins/morris/raphael.min.js"></script>
-<script src="js/plugins/morris/morris.min.js"></script>
-<script src="js/plugins/morris/morris-data.js"></script>
-<%=JSON.toJSONString(request.getAttribute("exams")) %>>
+<script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/morris/morris.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
+
+
 </html>

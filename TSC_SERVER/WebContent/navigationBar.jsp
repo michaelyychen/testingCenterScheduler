@@ -152,38 +152,38 @@
 							class="fa fa-desktop fa-2x"></i>Make Appointment
 					</a></li>
 					
-					<li><a href="makeRequest.jsp" target="mainarea"> <em
+					<li><a href="${pageContext.request.contextPath}/makeRequest.jsp" target="mainarea"> <em
 							class="fa fa-edit fa-2x"></em>Make Request
 					</a></li>
 					
-					<li><a href="viewAppointment.jsp" target="mainarea"><i
+					<li><a href="${pageContext.request.contextPath}/viewAppointment.jsp" target="mainarea"><i
 							class="fa fa-table fa-2x"></i> View Appointment</a></li>
 							
-					<li><a href="viewRequest.jsp" target="mainarea"><i
+					<li><a href="${pageContext.request.contextPath}/viewRequest.jsp" target="mainarea"><i
 							class="fa fa-table fa-2x"></i> View Request</a></li>
 					
-					<li><a href="approveOrDeny.jsp" target="mainarea"> <em
+					<li><a href="${pageContext.request.contextPath}/approveOrDeny.jsp" target="mainarea"> <em
 							class="fa fa-check fa-2x"></em> Approve/Deny Request
 					</a></li>
 					
-					<li><a href="displayUtilization.jsp" target="mainarea"> <em
+					<li><a href="${pageContext.request.contextPath}/displayUtilization.jsp" target="mainarea"> <em
 							class="fa fa-line-chart fa-2x"></em> Display Utilization
 					</a></li>
 					
-					<li><a href="attendence.jsp" target="mainarea"> <em
+					<li><a href="${pageContext.request.contextPath}/attendence.jsp" target="mainarea"> <em
 							class="fa fa-mortar-board fa-2x"></em> Attendance
 					</a></li>
-					    <li> <a href="checkIn.jsp" target="mainarea">
+					    <li> <a href="${pageContext.request.contextPath}/checkIn.jsp" target="mainarea">
 					     <em class="fa fa-calendar-check-o fa-2x"></em> Check-In</a> </li>
 				
-					<li><a href="editTestingCenter.jsp" target="mainarea"> <em
+					<li><a href="${pageContext.request.contextPath}/editTestingCenter.jsp" target="mainarea"> <em
 							class="fa fa-gear fa-2x"></em> Edit Testing Center
 					</a></li>
 					
-					<li><a href="import.jsp" target="mainarea"> <em
+					<li><a href="${pageContext.request.contextPath}/import.jsp" target="mainarea"> <em
 							class="fa fa-cloud-upload fa-2x"></em> Import Data
 					</a></li>
-					<li><a href="feedback_Failure.jsp" target="mainarea"> <em
+					<li><a href="${pageContext.request.contextPath}/feedback_Failure.jsp" target="mainarea"> <em
 							class="fa fa-download fa-2x"></em> Generate Report
 					</a></li>
 
@@ -204,15 +204,15 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 	<!-- Morris Charts JavaScript -->
-	<script src="js/plugins/morris/raphael.min.js"></script>
-	<script src="js/plugins/morris/morris.min.js"></script>
-	<script src="js/plugins/morris/morris-data.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/morris/morris.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
 
 </body>
 
