@@ -1,3 +1,4 @@
+<%@page import="com.alibaba.fastjson.JSON"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <jsp:include page="navigationBar.jsp"></jsp:include>
@@ -18,14 +19,14 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="css/sb-admin.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="css/plugins/morris.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet" type="text/css">
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 
 <link rel="stylesheet"
@@ -184,7 +185,7 @@
 				<div class="row">
 
 
-					<a href="feedback_sucess.html" target="mainarea">
+					<a href="feedback_Sucess.jsp" target="mainarea">
 						<button type="button" class="btn btn-primary" id="request">Submit
 							Request</button>
 					</a>
@@ -238,5 +239,5 @@
 <script src="js/plugins/morris/raphael.min.js"></script>
 <script src="js/plugins/morris/morris.min.js"></script>
 <script src="js/plugins/morris/morris-data.js"></script>
-
+<%=JSON.toJSONString(request.getAttribute("exams")) %>>
 </html>

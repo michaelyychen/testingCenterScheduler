@@ -15,17 +15,17 @@
 <title>SB Admin - Bootstrap Admin Template</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet" type="text/css">
 <!-- Custom CSS -->
-<link href="css/sb-admin.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="css/plugins/morris.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -148,7 +148,7 @@
 				<ul class="nav navbar-nav side-nav">
 
 
-					<li><a href="makeAppointment.jsp" target="mainarea"> <i
+					<li><a href="${pageContext.request.contextPath}/control/appointment.do?method=goTomakeAppointment" target="mainarea"> <i
 							class="fa fa-desktop fa-2x"></i>Make Appointment
 					</a></li>
 					

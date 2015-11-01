@@ -10,7 +10,7 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link href="css/my.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet" media="screen">
 </style>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

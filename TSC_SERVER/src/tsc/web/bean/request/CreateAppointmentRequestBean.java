@@ -25,8 +25,7 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 	
 	public CreateAppointmentRequestBean(HttpServletRequest request) {
 		super(request);
-		
-		
+			
 	}
 
 	@Override

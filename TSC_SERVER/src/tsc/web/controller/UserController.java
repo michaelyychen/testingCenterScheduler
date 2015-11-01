@@ -39,10 +39,15 @@ public class UserController implements Controller{
 				request.setAttribute("user", user);
 				
 				//webPageResponse(1);
-				if(user.getRole()==2){
-					request.getRequestDispatcher("/instructor.jsp").forward(request, response);
+				if(user.getRole()==1){
+					request.getRequestDispatcher("/makeAppointment.jsp").forward(request, response);
 				}
-				
+				if(user.getRole()==2){
+					request.getRequestDispatcher("/makeAppointment.jsp").forward(request, response);
+				}
+				if(user.getRole()==3){
+					request.getRequestDispatcher("/makeAppointment.jsp").forward(request, response);
+				}
 			}
 		}else{
 			errorPage(request,response,"Invalid Username Or Password");
