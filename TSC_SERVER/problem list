@@ -7,4 +7,4 @@ Appointment Part
 
 Request Part
 1. CreateRequest: now don't pass in term information; examIdentifier; exam number is redundant
-2. CreateReqRequestBean: requestBean is created after parsedata() methood is used.
+2. CreateReqRequestBean: requestBean is created after parsedata() methood is used.   

@@ -82,15 +82,26 @@
 							</div>
 							<div class="container">
 								<h2>Exam Detail</h2>
+   <form class="form-signin" method="post"  action="${pageContext.request.contextPath}/control/appointment.do?method=makeAppointment">
+                <span id="reauth-email" class="reauth-email"></span>
+            <input  name="examId" class="form-control" value="CSE30802-201502-ex01" required autofocus>
+                <input name="status"  class="form-control" value="1" required>
+                 <input name="studentId"  class="form-control" value="101131607" required>
+                  <input name="seatId"  class="form-control" value="" >
+                   <input name="startTime"  class="form-control" value="2015-10-01 09:15:00" required>
+                    <input name="endTime"  class="form-control"  value="2015-10-01 10:00:00" required>
+                
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Login</button>
+          </form>
 
-
-								<form class="form-horizontal" role="form" id="courseExam">
+								<form class="form-horizontal" role="form" id="courseExam" method="post"  action="${pageContext.request.contextPath}/control/appointment.do?method=makeAppointment">
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Name</label>
-										<div class="col-sm-6">
-											<input class="form-control" type="text"
-												placeholder="Enter Name...">
-										</div>
+										<input name="examId" value="1" />
+										<input name="status" value="1"/>
+										<input name="studentId" value="101131607" />
+										<input name="seatId" value="1" />
+										<input name="startTime" value="2015-10-01 9:15:00"/>
+										<input name="endTime" value="2015-10-01 10:00:00"/>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Student ID</label>
@@ -109,7 +120,7 @@
 													class="caret"></span></a>
 												<ul class="dropdown-menu">
 												<c:forEach var="exam" items="${exams}">
-													<li><a href="#">${exam.className}</a></li>
+													<li><a href="#" >${exam.className}</a></li>
 												</c:forEach>
 												</ul>
 
@@ -171,10 +182,19 @@
 										</div>
 
 									</div>
+								<div class="row">
 
+
+								
+								<button type="submit" class="btn btn-primary" id="request">Submit
+							</button>
+						
+					<!-- /.row -->
+
+				</div>
 
 								</form>
-
+				
 
 							</div>
 						</div>
@@ -185,16 +205,7 @@
 
 				<!-- /.row -->
 
-				<div class="row">
-
-
-					<a href="${pageContext.request.contextPath}/feedback_Sucess.jsp" target="mainarea">
-						<button type="button" class="btn btn-primary" id="request">Submit
-							Request</button>
-					</a>
-					<!-- /.row -->
-
-				</div>
+			
 				<!-- /.container-fluid -->
 			</div>
 		</div>
@@ -216,7 +227,8 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/collapse.js"></script>
 <script src="${pageContext.request.contextPath}/js/transition.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
            $(function () {
 
