@@ -40,13 +40,13 @@ public class UserController implements Controller{
 				
 				//webPageResponse(1);
 				if(user.getRole()==1){
-					request.getRequestDispatcher("/makeAppointment.jsp").forward(request, response);
+					request.getRequestDispatcher("/welcomePage.jsp").forward(request, response);
 				}
 				if(user.getRole()==2){
-					request.getRequestDispatcher("/makeAppointment.jsp").forward(request, response);
+					request.getRequestDispatcher("/welcomePage.jsp").forward(request, response);
 				}
 				if(user.getRole()==3){
-					request.getRequestDispatcher("/makeAppointment.jsp").forward(request, response);
+					request.getRequestDispatcher("/welcomePage.jsp").forward(request, response);
 				}
 			}
 		}else{

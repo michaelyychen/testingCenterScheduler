@@ -1,9 +1,16 @@
 package tsc.web.bean.request;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.util.TypeUtils;
 
+import javafx.scene.input.DataFormat;
 import tsc.web.bean.AppointmentBean;
 import tsc.web.utils.FunUtils;
 import tsc.web.utils.LogUtils;
@@ -16,9 +23,8 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 	public static final String  PARA_APPOINTMENT_SEAT_ID = "seatId";
 	public static final String  PARA_APPOINTMENT_STARTTIME = "startTime";
 	public static final String  PARA_APPOINTMENT_ENDTIME = "endTime";
-	
-	
-	
+
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd kk：mm:ss");
 	
 	AppointmentBean appointment;
 	int userRole;
@@ -50,14 +56,22 @@ public class CreateAppointmentRequestBean extends HttpRequestBean<AppointmentBea
 
 	@Override
 	public void parseData() {
-		appointment = new AppointmentBean();
-		appointment.setExamId(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_ID)));
-		appointment.setSeatId(TypeUtils.castToInt(mRequest.getParameter(PARA_APPOINTMENT_SEAT_ID)));
-		appointment.setStatus(TypeUtils.castToInt(mRequest.getParameter(PARA_APPOINTMENT_STATUS)));
-		appointment.setStudent(mRequest.getParameter(PARA_APPOINTMENT_STU_ID));
-		appointment.setStartTime(TypeUtils.castToTimestamp(mRequest.getParameter(PARA_APPOINTMENT_STARTTIME)));
-		appointment.setEndTime(TypeUtils.castToTimestamp(mRequest.getParameter(PARA_APPOINTMENT_ENDTIME)));
-		userRole = FunUtils.getUser(mRequest).getRole();
+		try {
+			appointment = new AppointmentBean();
+			appointment.setExamId(TypeUtils.castToInt(mRequest.getParameter(PARA_EXAM_ID)));
+			appointment.setSeatId(TypeUtils.castToInt(mRequest.getParameter(PARA_APPOINTMENT_SEAT_ID)));
+			appointment.setStatus(TypeUtils.castToInt(mRequest.getParameter(PARA_APPOINTMENT_STATUS)));
+			appointment.setStudent(mRequest.getParameter(PARA_APPOINTMENT_STU_ID));
+			Date startDate = df.parse(mRequest.getParameter(PARA_APPOINTMENT_STARTTIME));
+			Date endDate = df.parse(mRequest.getParameter(PARA_APPOINTMENT_ENDTIME));
+			appointment.setStartTime(new Timestamp(startDate.getTime()));
+			appointment.setEndTime(new Timestamp(endDate.getTime()));
+				
+			
+			userRole = FunUtils.getUser(mRequest).getRole();
+		} catch (Exception e) {
+			LogUtils.outputError("CreateAppointmentRequestBean", "parseData", e.getMessage());
+		}
 
 		
 	}
