@@ -1,0 +1,10 @@
+Appointment Part
+1. CreateAppointmentRequestBean: ParseData(): admin don't indicate stu ID
+2. AppointmentService;CreateAppointment: getAvaSeats should search ava seats by student-chosen start time and end time
+3. return seat ID to student: avoid adjacent seat 
+4. Modify appointment details 
+5. View appointment: now didn't pass in term, examId 
+
+Request Part
+1. CreateRequest: now don't pass in term information; examIdentifier; exam number is redundant
+2. CreateReqRequestBean: requestBean is created after parsedata() methood is used.   
